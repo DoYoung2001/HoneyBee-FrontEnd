@@ -1,7 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css"; // CSS Modules import
 
 function NavBar() {
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+    navigate("/login");
+  };
+
+  const handleRegister = () => {
+    navigate("/register"); // Assuming you'll create a register page
+  };
+
+  // 임시로 로그인 상태를 확인하는 함수입니다.
+  // 실제 구현에서는 상태 관리 라이브러리나 컨텍스트를 사용하여 로그인 상태를 관리해야 합니다.
+  const isLoggedIn = () => {
+    return localStorage.getItem('isLoggedIn') === 'true';
+  };
+
+  const handleLogout = () => {
+    // Add logout logic here (e.g., clear token from localStorage)
+    localStorage.removeItem('isLoggedIn');
+    navigate("/");
+  };
   return (
     <nav className={styles.navbarContainer}>
       <div className={styles.navbarLogo}>
@@ -22,12 +44,20 @@ function NavBar() {
         </li>
       </ul>
       <div className={styles.buttonContainer}>
-        <button className={styles.signButton}>
-          <a href="/">sign in</a>
-        </button>
-        <button className={styles.register}>
-          <a href="/">register</a>
-        </button>
+        {isLoggedIn() ? (
+          <button className={styles.signButton} onClick={handleLogout}>
+            Sign Out
+          </button>
+        ) : (
+          <>
+            <button className={styles.signButton} onClick={handleSignIn}>
+              Sign In
+            </button>
+            <button className={styles.register} onClick={handleRegister}>
+              Register
+            </button>
+          </>
+        )}
       </div>
     </nav>
   );
