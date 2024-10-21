@@ -1,4 +1,4 @@
-// Member.js
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Member.module.css';
@@ -8,7 +8,7 @@ const Member = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 여기에 회원가입 로직을 추가할 수 있습니다.
+    
     // 지금은 단순히 로그인 페이지로 이동합니다.
     navigate('/login');
   };

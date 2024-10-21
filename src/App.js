@@ -5,6 +5,7 @@ import Main from "./component/Main/Main";
 import Login from "./component/Login/Login";
 import SignUp from "./component/SignUp/SignUp";
 import Member from "./component/SignUpMember/Member";
+import Counselor from "./component/SignUpCounselor/Counselor";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signup/member" element={<Member />} /> 
+          <Route path="/signup/counselor" element={<Counselor />} /> 
           {/* Add other routes as needed */}
         </Routes>
       </div>
