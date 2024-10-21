@@ -4,6 +4,7 @@ import NavBar from "./component/Navbar/Navbar";
 import Main from "./component/Main/Main";
 import Login from "./component/Login/Login";
 import SignUp from "./component/SignUp/SignUp";
+import Member from "./component/SignUpMember/Member";
 import "./App.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/signup/member" element={<Member />} /> 
           {/* Add other routes as needed */}
         </Routes>
       </div>
