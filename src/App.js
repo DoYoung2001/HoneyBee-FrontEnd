@@ -7,6 +7,7 @@ import SignUp from "./component/SignUp/SignUp";
 import Member from "./component/SignUpMember/Member";
 import Counselor from "./component/SignUpCounselor/Counselor";
 import "./App.css";
+import CounselorList from "./component/CounselorList/CounselorList";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signup/member" element={<Member />} /> 
           <Route path="/signup/counselor" element={<Counselor />} /> 
-          {/* Add other routes as needed */}
+          <Route path="/counselorlist" element={<CounselorList />} />
+          
         </Routes>
       </div>
     </Router>
