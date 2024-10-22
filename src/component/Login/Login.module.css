@@ -85,6 +85,7 @@
   margin-bottom: 8px;
   font-weight: bold;
   color: #333;
+  text-align: left; /* 왼쪽 정렬 추가 */
 }
 
 .inputGroup input {
