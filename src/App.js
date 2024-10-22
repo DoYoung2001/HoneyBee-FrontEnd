@@ -8,6 +8,7 @@ import Member from "./component/SignUpMember/Member";
 import Counselor from "./component/SignUpCounselor/Counselor";
 import "./App.css";
 import CounselorList from "./component/CounselorList/CounselorList";
+import MyReserve from "./component/MyReserve/MyReserve";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/signup/member" element={<Member />} /> 
           <Route path="/signup/counselor" element={<Counselor />} /> 
           <Route path="/counselorlist" element={<CounselorList />} />
+          <Route path="/myreserve" element={<MyReserve />} />
           
         </Routes>
       </div>
