@@ -23,7 +23,7 @@ const SignUp = () => {
               회원용
             </button>
             <button 
-              className={styles.typeButton} 
+              className={`${styles.typeButton} ${styles.counselorButton}`} 
               onClick={() => handleTypeSelection('counselor')}
             >
               상담사용

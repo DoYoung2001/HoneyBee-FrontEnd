@@ -52,3 +52,12 @@
   .typeButton:hover {
     background-color: #45a049;
   }
+
+  .counselorButton {
+    background-color: #6495ed;
+    color: white; 
+  }
+  
+  .counselorButton:hover {
+    background-color: #4169e1;
+  }
