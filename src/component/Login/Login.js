@@ -58,7 +58,7 @@ const Login = () => {
             onSubmit={handleSubmit}
           >
             <div className={styles.inputGroup}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">이메일</label>
               <input
                 type="email"
                 id="email"
@@ -68,7 +68,7 @@ const Login = () => {
               />
             </div>
             <div className={styles.inputGroup}>
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">비밀번호</label>
               <input
                 type="password"
                 id="password"
