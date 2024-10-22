@@ -14,11 +14,14 @@ const counselors = [
     { id: 8, name: '김치료', rating: 4.1, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439992.png' },
     { id: 9, name: '신상담', rating: 4.0, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439988.png' },
     { id: 10, name: '배치료', rating: 4.4, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439992.png' },
+    { id: 11, name: '박전문', rating: 4.8, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439992.png' }
   ];
 
 const CounselorList = () => {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [sortBy, setSortBy] = useState('rating');
+  const [currentPage, setCurrentPage] = useState(1);
+  const counselorsPerPage = 10;
 
   const handleCategoryChange = (direction) => {
     if (direction === 'left') {
@@ -37,6 +40,38 @@ const CounselorList = () => {
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
   };
+
+  // 정렬된 상담사 목록 가져오기
+  const getSortedCounselors = () => {
+    return [...counselors].sort((a, b) => {
+      if (sortBy === 'rating') {
+        return b.rating - a.rating;
+      } else {
+        return a.name.localeCompare(b.name);
+      }
+    });
+  };
+
+  // 현재 페이지의 상담사 목록 가져오기
+  const getCurrentCounselors = () => {
+    const sortedCounselors = getSortedCounselors();
+    const indexOfLastCounselor = currentPage * counselorsPerPage;
+    const indexOfFirstCounselor = indexOfLastCounselor - counselorsPerPage;
+    return sortedCounselors.slice(indexOfFirstCounselor, indexOfLastCounselor);
+  };
+
+  // 페이지 변경 핸들러
+  const paginate = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= pageNumbers.length) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
+  // 총 페이지 수 계산
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(counselors.length / counselorsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
   return (
     <div className={styles.container}>
@@ -64,7 +99,7 @@ const CounselorList = () => {
       </div>
 
       <div className={styles.counselorList}>
-        {counselors.map((counselor) => (
+        {getCurrentCounselors().map((counselor) => (
           <div key={counselor.id} className={styles.counselorItem}>
             <img src={counselor.image} alt={counselor.name} className={styles.counselorImage} />
             <div className={styles.counselorInfo}>
@@ -77,6 +112,31 @@ const CounselorList = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className={styles.pagination}>
+        <button 
+          onClick={() => paginate(currentPage - 1)} 
+          className={styles.pageArrow}
+          disabled={currentPage === 1}
+        >
+          &lt;
+        </button>
+        {pageNumbers.map(number => (
+          <button
+            key={number}
+            onClick={() => paginate(number)}
+            className={`${styles.pageButton} ${currentPage === number ? styles.activePage : ''}`}
+          >
+            {number}
+          </button>
+        ))}
+        <button 
+          onClick={() => paginate(currentPage + 1)} 
+          className={styles.pageArrow}
+          disabled={currentPage === pageNumbers.length}
+        >
+          &gt;
+        </button>
       </div>
     </div>
   );

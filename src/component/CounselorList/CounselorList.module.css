@@ -103,3 +103,40 @@
     color: #333;
     margin-left: 5px;
   }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pageButton {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .activePage {
+    color: #4169e1;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .pageArrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #4169e1;
+    padding: 0 10px;
+  }
+  
+  .pageArrow:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
