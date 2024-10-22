@@ -1,159 +1,203 @@
 /* Login.module.css */
+
 .container {
-    font-family: Arial, sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .logo {
-    font-size: 28px;
-  }
-  
-  .nav a, .nav button {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .signIn, .register {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .signIn {
-    background-color: tertiary;
-    color: #4CAF50;
-  }
-  
-  .register {
-    background-color: #7FC289;
-    color: white;
-  }
-  
-  .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 0;
-  }
-  
-  .title {
-    font-size: 42px;
-    margin-bottom: 40px;
-    color: #333;
-  }
-  
-  .loginForm {
-    width: 100%;
-    max-width: 500px;
-    background-color: #f9f9f9;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .inputGroup {
-    margin-bottom: 25px;
-  }
-  
-  .inputGroup label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .inputGroup input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .signInButton {
-    width: 100%;
-    padding: 14px;
-    background-color: #A3D3AA;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-  
-  .signInButton:hover {
-    background-color: #45a049;
-  }
-  
-  .forgotPassword {
-    display: block;
-    text-align: center;
-    margin-top: 15px;
-    color: #666;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  
-  .footer {
-    margin-top: 60px;
-    padding-top: 40px;
-    border-top: 1px solid #ddd;
-  }
-  
-  .footerLogo {
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-  
-  .footerColumns {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .footerColumn {
-    flex: 1;
-    min-width: 200px;
-    margin-bottom: 30px;
-  }
-  
-  .footerColumn h3 {
-    margin-bottom: 15px;
-    color: #333;
-  }
-  
-  .footerColumn ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .footerColumn li {
-    margin-bottom: 8px;
-  }
-  
-  .socialLinks {
-    margin-top: 30px;
-  }
-  
-  .socialLinks a {
-    margin-right: 15px;
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-  }
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.title {
+  font-size: 42px;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.loginContainer {
+  width: 100%;
+  max-width: 500px;
+}
+
+.userTypeSelection {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0;
+}
+
+.userTypeButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid #a3d3aa;
+  background-color: white;
+  color: #a3d3aa;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-grow: 0;
+}
+
+.userTypeButton:first-child {
+  margin-right: 10px;
+}
+
+.userTypeButton:hover {
+  background-color: #a3d3aa;
+  color: white;
+}
+
+.userTypeButton.selectedCustomer {
+  background-color: #a3d3aa;
+  color: white;
+}
+
+.userTypeButton:last-child {
+  border-color: #6495ed;
+  color: #6495ed;
+}
+
+.userTypeButton.selectedConsultant,
+.userTypeButton:last-child:hover {
+  background-color: #6495ed;
+  color: white;
+  border-color: #6495ed;
+}
+
+.loginForm {
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 0 10px 10px 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.inputGroup {
+  margin-bottom: 25px;
+}
+
+.inputGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.inputGroup input:focus {
+  border-color: #a3d3aa;
+  outline: none;
+}
+
+.consultantForm .inputGroup input:focus {
+  border-color: #6495ed;
+}
+
+.signInButton {
+  width: 100%;
+  padding: 14px;
+  background-color: #a3d3aa;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.signInButton:hover {
+  background-color: #7fc289;
+}
+
+.consultantSignIn {
+  background-color: #6495ed;
+}
+
+.consultantSignIn:hover {
+  background-color: #4169e1;
+}
+
+.forgotPassword {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.forgotPassword:hover {
+  color: #a3d3aa;
+}
+
+.consultantForm .forgotPassword:hover {
+  color: #6495ed;
+}
+
+.error {
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.footer {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid #ddd;
+}
+
+.footerLogo {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.footerColumns {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footerColumn {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 30px;
+}
+
+.footerColumn h3 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.footerColumn ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footerColumn li {
+  margin-bottom: 8px;
+}
+
+.socialLinks {
+  margin-top: 30px;
+}
+
+.socialLinks a {
+  margin-right: 15px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
