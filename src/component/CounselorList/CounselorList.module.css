@@ -1,3 +1,4 @@
+
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -69,11 +70,9 @@
   
   .counselorItem {
     display: flex;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
   }
   
   .counselorItem:hover {
@@ -81,27 +80,59 @@
   }
   
   .counselorImage {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin-right: 15px;
   }
   
   .counselorInfo {
-    padding: 15px;
     flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
   }
   
-  .counselorInfo h3 {
-    margin: 0 0 10px 0;
+  .nameRatingContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  
+
+  .nameAddressContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .counselorName {
+    margin-left: 70px;
+    margin-right: 20px;
+    font-size: 20px;
+  }
+
+  .address {
+    font-size: 14px;
+    color: #666; 
+  }
+
+  .ratingContainer {
+    display: flex;
+    align-items: center;
+  }
+
   .rating {
     color: #ffc107;
+    font-size: 16px;
+    margin-right: 5px;
   }
   
-  .rating span {
-    color: #333;
-    margin-left: 5px;
+  .ratingNumber {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .reviewCount {
+    font-size: 14px;
+    color: #666;
   }
 
   .pagination {
