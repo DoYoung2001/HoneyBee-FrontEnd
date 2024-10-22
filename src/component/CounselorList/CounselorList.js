@@ -4,10 +4,17 @@ import styles from './CounselorList.module.css';
 const categories = ['불안', '우울', '가족관계', '연애', '사회생활', '직장', '학업', '자존감', '중독', '트라우마'];
 
 const counselors = [
-  { id: 1, name: '김상담', rating: 4.5, image: 'path/to/image1.jpg' },
-  { id: 2, name: '이치료', rating: 4.8, image: 'path/to/image2.jpg' },
-  // 더 많은 상담사 데이터...
-];
+    { id: 1, name: '김상담', rating: 4.5, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439988.png' },
+    { id: 2, name: '이치료', rating: 4.8, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439992.png' },
+    { id: 3, name: '박상담', rating: 4.7, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439992.png' },
+    { id: 4, name: '최치료', rating: 4.6, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439992.png' },
+    { id: 5, name: '정상담', rating: 4.9, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439988.png' },
+    { id: 6, name: '홍치료', rating: 4.3, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439988.png' },
+    { id: 7, name: '이상담', rating: 4.2, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439992.png' },
+    { id: 8, name: '김치료', rating: 4.1, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439992.png' },
+    { id: 9, name: '신상담', rating: 4.0, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439988.png' },
+    { id: 10, name: '배치료', rating: 4.4, image: 'https://cdn-icons-png.flaticon.com/128/4439/4439992.png' },
+  ];
 
 const CounselorList = () => {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
@@ -23,7 +30,7 @@ const CounselorList = () => {
         prevIndex < categories.length - 1 ? prevIndex + 1 : 0
       );
     } else {
-      setSelectedCategoryIndex(direction); // 직접 인덱스를 설정할 때
+      setSelectedCategoryIndex(direction); 
     }
   };
 
