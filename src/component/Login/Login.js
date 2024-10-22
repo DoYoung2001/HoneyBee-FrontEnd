@@ -39,7 +39,7 @@ const Login = () => {
               }`}
               onClick={() => setUserType("customer")}
             >
-              고객용
+              고객
             </button>
             <button
               type="button"
@@ -48,7 +48,7 @@ const Login = () => {
               }`}
               onClick={() => setUserType("consultant")}
             >
-              상담사용
+              상담사
             </button>
           </div>
           <form
