@@ -53,7 +53,7 @@ const QuestionBoard = () => {
   return (
     <div className={styles.boardContainer}>
       <div className={styles.headerContainer}>
-        <h1 className={styles.boardTitle}>상담 질문게시판</h1>
+        <h1 className={styles.boardTitle}>질문게시판</h1>
         <button onClick={handleWriteClick} className={styles.writeButton}>작성하기</button>
       </div>
       
