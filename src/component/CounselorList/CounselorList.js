@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './CounselorList.module.css';
 
 const categories = ['불안', '우울', '가족관계', '연애', '사회생활', '직장', '학업', '자존감', '중독', '트라우마'];
@@ -22,6 +23,7 @@ const CounselorList = () => {
   const [sortBy, setSortBy] = useState('rating');
   const [currentPage, setCurrentPage] = useState(1);
   const counselorsPerPage = 10;
+  const navigate = useNavigate();
 
   const handleCategoryChange = (direction) => {
     if (direction === 'left') {
@@ -35,6 +37,10 @@ const CounselorList = () => {
     } else {
       setSelectedCategoryIndex(direction); 
     }
+  };
+
+  const handleCounselorClick = (counselorId) => {
+    navigate(`/counselorlist/counselordetail/${counselorId}`);
   };
 
   const handleSortChange = (event) => {
@@ -100,7 +106,8 @@ const CounselorList = () => {
 
       <div className={styles.counselorList}>
         {getCurrentCounselors().map((counselor) => (
-          <div key={counselor.id} className={styles.counselorItem}>
+          <div key={counselor.id} className={styles.counselorItem}
+          onClick={() => handleCounselorClick(counselor.id)}>
             <img src={counselor.image} alt={counselor.name} className={styles.counselorImage} />
             <div className={styles.counselorInfo}>
               <div className={styles.nameAddressContainer}>
