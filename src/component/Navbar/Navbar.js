@@ -69,7 +69,7 @@ function NavBar() {
 
   // 상담사 목록 클릭 핸들러
   const handleConsultListClick = () => {
-    navigate("/consult-list"); // 상담사 목록 페이지로 이동
+    navigate("/counselorlist"); // 상담사 목록 페이지로 이동
   };
 
   return (
