@@ -1,7 +1,7 @@
 .createPostContainer {
     max-width: 75%;
     margin: 5% auto;
-    padding: 40px;
+    padding: 30px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 8px;
@@ -10,7 +10,7 @@
   .title {
     font-size: 30px;
     color: #333;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     text-align: left;
   }
   
@@ -54,6 +54,7 @@
   .textarea {
     height: 300px;
     resize: none;
+    max-width: 98%;
   }
   
   .buttonContainer {
