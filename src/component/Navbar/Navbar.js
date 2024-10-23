@@ -54,6 +54,10 @@ function NavBar() {
     setShowHospitalDropdown(false);
   };
 
+  const handleQuestionBoardClick = () => {
+    navigate("/questionboard");
+  };
+
   const handleBoardMouseLeave = () => {
     setShowBoardDropdown(false);
   };
@@ -119,7 +123,9 @@ function NavBar() {
             </div>
           )}
         </li>
-        <li className={styles.navbarItem} onMouseEnter={handleBoardMouseEnter}>
+        <li className={styles.navbarItem} onMouseEnter={handleBoardMouseEnter}
+          onClick={handleQuestionBoardClick}
+        >
           <a href="#">게시판</a>
           {showBoardDropdown && (
             <div
