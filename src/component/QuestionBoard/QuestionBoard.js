@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './QuestionBoard.module.css';
 
 const QuestionBoard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const questionsPerPage = 10;
+  const navigate = useNavigate();
 
   const questions = [
     {
@@ -42,8 +44,7 @@ const QuestionBoard = () => {
   };
 
   const handleWriteClick = () => {
-    console.log("작성하기 버튼 클릭");
-    // 여기에 작성 페이지로 이동하는 로직을 추가하세요
+    navigate('/createpost');
   };
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
