@@ -54,6 +54,10 @@ function NavBar() {
     setShowHospitalDropdown(false);
   };
 
+  const handleQuestionBoardClick = () => {
+    navigate("/questionboard");
+  };
+
   const handleBoardMouseLeave = () => {
     setShowBoardDropdown(false);
   };
@@ -65,7 +69,7 @@ function NavBar() {
 
   // 상담사 목록 클릭 핸들러
   const handleConsultListClick = () => {
-    navigate("/consult-list"); // 상담사 목록 페이지로 이동
+    navigate("/counselorlist"); // 상담사 목록 페이지로 이동
   };
 
   return (
@@ -119,7 +123,9 @@ function NavBar() {
             </div>
           )}
         </li>
-        <li className={styles.navbarItem} onMouseEnter={handleBoardMouseEnter}>
+        <li className={styles.navbarItem} onMouseEnter={handleBoardMouseEnter}
+          onClick={handleQuestionBoardClick}
+        >
           <a href="#">게시판</a>
           {showBoardDropdown && (
             <div
