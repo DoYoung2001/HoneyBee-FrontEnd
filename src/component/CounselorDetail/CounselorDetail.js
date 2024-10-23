@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './CounselorDetail.module.css'; 
 
 const CounselorDetail = () => {
+    const navigate = useNavigate();
+
     const counselor = {
         id:1,
         name:'김상담',
@@ -21,7 +24,7 @@ const CounselorDetail = () => {
     };
 
     const handleGoBack = () => {
-        console.log('뒤로가기 클릭');
+       navigate('/counselorlist');
     };
 
     return (
