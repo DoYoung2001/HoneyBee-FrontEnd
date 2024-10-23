@@ -2,34 +2,37 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-  }
-  
-  .title {
+    background-color: #fff;  /* 배경색 추가 */
+    min-height: 100vh;       /* 전체 높이 설정 */
+}
+
+.title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
-    text-align: left;  /* 왼쪽 정렬 추가 */
-  }
-  
-  .tabContainer {
+    text-align: left;
+    color: #000;  /* 검정색 추가 */
+}
+
+.tabContainer {
     display: flex;
-    width: 100%;
-    margin: 0;  /* margin 제거 */
-  }
-  
-  .tabButton {
-    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.tabButton {
+    padding: 10px 20px;
     font-size: 16px;
     background: none;
     border: none;
+    border-bottom: 2px solid transparent;
     cursor: pointer;
-    flex: 1;
-    text-align: center;
-  }
-  
-  .tabButton.active {
-    background-color: #E8F5E9;  /* 연한 민트색 */
-  }
+}
+
+.tabButton.active {
+    border-bottom: 2px solid #4CAF50;
+    color: #4CAF50;
+}
   
   .contentSection {
     background-color: #fff;
@@ -44,18 +47,19 @@
     padding: 15px 20px;
     border-bottom: 1px solid #e0e0e0;
     cursor: pointer;
-    margin-top: 20px; /* 상단 여백 추가 */
-    background-color: #f8f9fa; /* 배경색 추가 (선택사항) */
-    border-radius: 8px 8px 0 0; /* 상단 모서리만 둥글게 (선택사항) */
-  }
+    margin-top: 20px;
+    background-color: #ecedef;  /* 배경색을 더 진하게 수정 */
+    border-radius: 8px 8px 0 0;
+}
   
-  .sectionHeader h2 {
+.sectionHeader h2 {
     font-size: 18px;
     margin: 0;
     display: flex;
     align-items: center;
     gap: 8px;
-  }
+    color: #333;  /* 글자색도 더 진하게 */
+}
 
   /* 첫 번째 sectionHeader의 상단 여백 제거 */
 .contentSection > div:first-child.sectionHeader {
@@ -142,10 +146,4 @@
     color: white;
     cursor: pointer;
     font-size: 14px;
-  }
-  
-  /* 페이지 전체 배경색 */
-  :global(.App) {
-    background-color: #FFF5F5;  /* 연한 핑크색 */
-    min-height: 100vh;
   }
