@@ -22,7 +22,7 @@
 .navbarMenu {
   list-style-type: none;
   display: flex;
-  gap: 20px;
+  gap: 80px;
   margin: 0;
   padding: 0%;
 }
@@ -35,13 +35,78 @@
 }
 
 .navbarItem a:hover {
-  color: #b1b1b1;
+  color: #a5a5a5;
+}
+
+.dropdownMenu {
+  position: absolute;
+  background-color: rgba(222, 222, 222, 0.95);
+  padding: 0px;
+  list-style: none;
+  display: block;
+  top: 101%;
+  left: 0px;
+  width: 100%;
+}
+
+.dropdownMenu ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.dropdownMenu li {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 13px;
+}
+
+.dropdownMenu .categoryItem {
+  padding-right: 456px;
+}
+
+.dropdownMenu .consultListItem {
+  padding-right: 456px;
+}
+
+.dropdownMenu .hospitalItem {
+  padding-right: 230px;
+}
+
+.dropdownMenu .boardItem {
+  padding-left: 50px;
+}
+
+.dropdownItem {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  color: #080808;
+  font-weight: bold;
+  background-color: rgba(135, 135, 135, 0.1);
 }
 
 .buttonContainer {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.mypageButton {
+  border-radius: 3px;
+  border: 1px solid #000;
+  background-color: #000000;
+  padding: 5px 10px;
+  color: #ffffff;
+  cursor: pointer;
+  width: 90px;
+}
+
+.mypageButton:active {
+  background-color: #bcbcbc;
+  color: #000;
 }
 
 .signButton {
@@ -51,6 +116,7 @@
   padding: 5px 10px;
   color: #000;
   cursor: pointer;
+  width: 80px;
 }
 
 .signButton a {
@@ -70,6 +136,7 @@
   padding: 5px 10px;
   color: #000;
   cursor: pointer;
+  width: 80px;
 }
 
 .register a {
