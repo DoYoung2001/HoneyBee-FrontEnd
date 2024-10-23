@@ -10,6 +10,7 @@ import "./App.css";
 import CounselorList from "./component/CounselorList/CounselorList";
 
 import CounselorDetail from "./component/CounselorDetail/CounselorDetail";
+import QuestionBoard from "./component/QuestionBoard/QuestionBoard";
 
 import MyReserve from "./component/MyReserve/MyReserve";
 
@@ -26,9 +27,10 @@ function App() {
           <Route path="/signup/member" element={<Member />} /> 
           <Route path="/signup/counselor" element={<Counselor />} /> 
           <Route path="/counselorlist" element={<CounselorList />} />
-          <Route path="/counselordetail" element={<CounselorDetail />} />
+          <Route path="/counselorlist/counselordetail/:id" element={<CounselorDetail />} />
           <Route path="/myreserve" element={<MyReserve />} />
           
+          <Route path="/questionboard" element={<QuestionBoard />} />
         </Routes>
       </div>
     </Router>
