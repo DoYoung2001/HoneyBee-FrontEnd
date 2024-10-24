@@ -2,16 +2,17 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;  /* 배경색 추가 */
-  min-height: 100vh;       /* 전체 높이 설정 */
+  background-color: #fff; /* 배경색 추가 */
+  min-height: 100vh; /* 전체 높이 설정 */
 }
 
 .title {
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  margin-top: 30px;
   text-align: left;
-  color: #000;  /* 검정색 추가 */
+  color: #000; /* 검정색 추가 */
 }
 
 .tabContainer {
@@ -30,8 +31,8 @@
 }
 
 .tabButton.active {
-  border-bottom: 2px solid #4CAF50;
-  color: #4CAF50;
+  border-bottom: 2px solid #4caf50;
+  color: #4caf50;
 }
 
 .contentSection {
@@ -48,7 +49,7 @@
   border-bottom: 1px solid #e0e0e0;
   cursor: pointer;
   margin-top: 20px;
-  background-color: #ecedef;  /* 배경색을 더 진하게 수정 */
+  background-color: #ecedef; /* 배경색을 더 진하게 수정 */
   border-radius: 8px 8px 0 0;
 }
 
@@ -58,7 +59,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #333;  /* 글자색도 더 진하게 */
+  color: #333; /* 글자색도 더 진하게 */
 }
 
 /* 첫 번째 sectionHeader의 상단 여백 제거 */
@@ -121,7 +122,7 @@
 }
 
 .star {
-  color: #FFD700;  /* 금색 별표 */
+  color: #ffd700; /* 금색 별표 */
 }
 
 .tags {
@@ -131,19 +132,42 @@
 }
 
 .tag {
-  background-color: #E8F5E9;  /* 연한 민트색 */
+  background-color: #e8f5e9; /* 연한 민트색 */
   padding: 4px 8px;
   border-radius: 15px;
   font-size: 12px;
   color: #333;
 }
 
-.actionButton, .reviewButton {
+.actionButton,
+.reviewButton {
   padding: 6px 16px;
   border-radius: 20px;
   border: none;
-  background-color: #A5A0B4;  /* 회색빛 보라색 */
+  background-color: #a5a0b4; /* 회색빛 보라색 */
   color: white;
   cursor: pointer;
   font-size: 14px;
+}
+
+.personalInfoButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.personalInfoButton {
+  padding: 8px 16px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #000;
+}
+
+.personalInfoButton:active {
+  background-color: #383838;
 }
