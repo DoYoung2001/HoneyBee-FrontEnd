@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './PostPage.module.css';
 
 const PostPage = () => {
@@ -34,6 +34,23 @@ const DeleteIcon = () => (
     date: '2024-10-24',
     content: '여기에 게시글 내용이 들어갑니다. 여기에 게시글 내용이 들어갑니다. 여기에 게시글 내용이 들어갑니다.'
   });
+  const [activeMenu, setActiveMenu] = useState(null);
+  const [editingComment, setEditingComment] = useState(null);
+  const [editText, setEditText] = useState('');
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setActiveMenu(null);
+      }
+    };
+  
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -72,16 +89,68 @@ const DeleteIcon = () => (
     }
   };
 
-  const handleEdit = (commentId, newText) => {
-    const updatedComments = comments.map(comment => 
-      comment.id === commentId ? { ...comment, text: newText } : comment
-    );
-    setComments(updatedComments);
+  const handleEdit = (commentId, isReply = false, parentId = null) => {
+    let targetComment;
+    if (isReply) {
+      targetComment = comments.find(c => c.id === parentId)?.replies.find(r => r.id === commentId);
+    } else {
+      targetComment = comments.find(c => c.id === commentId);
+    }
+    if (targetComment) {
+      setEditingComment({ id: commentId, isReply, parentId });
+      setEditText(targetComment.text);
+    }
+    setActiveMenu(null);
   };
 
-  const handleDelete = (commentId) => {
-    const updatedComments = comments.filter(comment => comment.id !== commentId);
-    setComments(updatedComments);
+  const handleEditSubmit = () => {
+    if (editText.trim()) {
+      const updatedComments = comments.map(comment => {
+        if (editingComment.isReply && comment.id === editingComment.parentId) {
+          return {
+            ...comment,
+            replies: comment.replies.map(reply =>
+              reply.id === editingComment.id ? { ...reply, text: editText } : reply
+            )
+          };
+        } else if (!editingComment.isReply && comment.id === editingComment.id) {
+          return { ...comment, text: editText };
+        }
+        return comment;
+      });
+      setComments(updatedComments);
+      setEditingComment(null);
+      setEditText('');
+    }
+  };
+
+  const handleDelete = (commentId, isReply = false, parentId = null) => {
+    if (window.confirm('댓글을 삭제하시겠습니까?')) {
+      if (isReply) {
+        const updatedComments = comments.map(comment => {
+          if (comment.id === parentId) {
+            return {
+              ...comment,
+              replies: comment.replies.filter(reply => reply.id !== commentId)
+            };
+          }
+          return comment;
+        });
+        setComments(updatedComments);
+      } else {
+        const updatedComments = comments.filter(comment => comment.id !== commentId);
+        setComments(updatedComments);
+      }
+    }
+    setActiveMenu(null);
+  };
+
+  // const toggleMenu = (commentId) => {
+  //   setActiveMenu(activeMenu === commentId ? null : commentId);
+  // };
+
+  const toggleReply = (commentId) => {
+    setReplyingTo(replyingTo === commentId ? null : commentId);
   };
 
   const toggleMenu = (e) => {
@@ -154,17 +223,41 @@ const DeleteIcon = () => (
         {comments.map(comment => (
           <div key={comment.id} className={styles.comment}>
             <div className={styles.commentHeader}>
-              <span>{comment.author}</span>
-              <span>{comment.timestamp}</span>
+              <span className={styles.authorName}>{comment.author}</span>
+              <div className={styles.commentActions} ref={menuRef}>
+                <div className={styles.menuContainer}>
+                  <button className={styles.menuButton} onClick={() => toggleMenu(comment.id)}>⋮</button>
+                  {activeMenu === comment.id && (
+                    <div className={styles.menuDropdown}>
+                      <button onClick={() => handleEdit(comment.id)}>수정</button>
+                      <button onClick={() => handleDelete(comment.id)}>삭제</button>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-            <p>{comment.text}</p>
-            <div className={styles.commentActions}>
-              <button className={styles.button} onClick={() => handleEdit(comment.id, prompt('수정할 내용을 입력하세요:'))}>수정</button>
-              <button className={styles.button} onClick={() => handleDelete(comment.id)}>삭제</button>
-              <button className={styles.button} onClick={() => setReplyingTo(comment.id)}>답글</button>
+            {editingComment && editingComment.id === comment.id && !editingComment.isReply ? (
+              <div>
+                <textarea
+                  value={editText}
+                  onChange={(e) => setEditText(e.target.value)}
+                  className={styles.editInput}
+                />
+                <button onClick={handleEditSubmit} className={styles.button}>저장</button>
+                <button onClick={() => setEditingComment(null)} className={styles.button}>취소</button>
+              </div>
+            ) : (
+              <>
+                <p className={styles.commentText}>{comment.text}</p>
+                <span className={styles.timestamp}>{comment.timestamp}</span>
+              </>
+            )}
+            <div>
+            <button className={styles.replyButton} onClick={() => toggleReply(comment.id)}>답글</button>
             </div>
             {replyingTo === comment.id && (
               <div className={styles.replyForm}>
+                <span className={styles.replyArrow}>↳</span>
                 <input
                   className={styles.replyInput}
                   type="text"
@@ -176,14 +269,39 @@ const DeleteIcon = () => (
               </div>
             )}
             {comment.replies.map(reply => (
-              <div key={reply.id} className={`${styles.reply}`}>
-                <div className={styles.replyArrow}>↳</div>
+              <div key={reply.id} className={styles.reply}>
+                <span className={styles.replyArrow}>↳</span>
                 <div className={styles.replyContent}>
                   <div className={styles.replyHeader}>
-                    <span>{reply.author}</span>
-                    <span>{reply.timestamp}</span>
+                    <span className={styles.authorName}>{reply.author}</span>
+                    <div className={styles.replyActions}>
+                      <div className={styles.menuContainer} ref={menuRef}>
+                        <button className={styles.menuButton} onClick={() => toggleMenu(reply.id)}>⋮</button>
+                        {activeMenu === reply.id && (
+                          <div className={styles.menuDropdown}>
+                            <button onClick={() => handleEdit(reply.id, true, comment.id)}>수정</button>
+                            <button onClick={() => handleDelete(reply.id, true, comment.id)}>삭제</button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <p>{reply.text}</p>
+                  {editingComment && editingComment.id === reply.id && editingComment.isReply ? (
+                    <div>
+                      <textarea
+                        value={editText}
+                        onChange={(e) => setEditText(e.target.value)}
+                        className={styles.editInput}
+                      />
+                      <button onClick={handleEditSubmit} className={styles.button}>저장</button>
+                      <button onClick={() => setEditingComment(null)} className={styles.button}>취소</button>
+                    </div>
+                  ) : (
+                    <>
+                      <p className={styles.commentText}>{reply.text}</p>
+                      <span className={styles.timestamp}>{reply.timestamp}</span>
+                    </>
+                  )}
                 </div>
               </div>
             ))}

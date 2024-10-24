@@ -32,7 +32,7 @@
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    min-height: 500px; 
+    min-height: 300px;
   }
   
   .commentSection {
@@ -66,52 +66,126 @@
   }
   
   .comment {
-     border: 1px solid #ddd;
-     border-radius: 5px;
-     padding: 15px;
-     margin-bottom: 20px;
-     background-color: #f9f9f9;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+  }
+  
+  .commentContent, .replyContent {
+    text-align: left;
+  }
+  
+  .authorName {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .commentText {
+    color: #555;
+    margin: 10px 0;
+    text-align: left;
+  }
+  
+  .timestamp {
+    color: #888;
+    font-size: 0.8em;
+    display: block;
+    margin-top: 5px;
+    text-align: left;
+  }
+  
+  .comment, .reply {
+    position: relative;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
   }
   
   .commentHeader {
-     display: flex;
-     justify-content: space-between;
-     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .replyHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3%;
+  }
+
+  .replyActions {
+    position: absolute;
+    top: 15px;
+    right: 0;
   }
   
   .commentActions {
-     display: flex;
-     gap: 10px;
-     margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .menuContainer {
+    position: relative;
+  }
+  
+  .menuButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .replyButton {
+    background: none;
+    border: 1px solid gray; 
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 95%;
+    margin-bottom: 2%;
+    align-items: center;
+  }
+
+  .menuDropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+  }
+  
+  .menuDropdown button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .menuDropdown button:hover {
+    background-color: #f0f0f0;
   }
   
   .reply {
-     display: flex;
-     align-items: flex-start;
-     margin-left: 20px;
-     margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   }
   
   .replyArrow {
-     margin-right: 10px;
-     color: #888;
+    margin-right: 5px;
   }
   
   .replyContent {
-     flex-grow: 1;
-     background-color: #f0f8ff;
-     padding: 10px;
-     border-radius: 5px;
+    flex-grow: 1;
   }
   
-  .replyHeader {
-     display: flex;
-     justify-content: space-between;
-     margin-bottom: 5px;
-  }
-  
-  .replyForm {
-    margin-top: 10px;
+  .replyTextContent {
     margin-left: 20px;
   }
 
