@@ -1,12 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './PostPage.module.css';
 
 const PostPage = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  const [replyingTo, setReplyingTo] = useState(null);
+  const [replyingTo, setReplyingTo] = useState({});
   const [replyText, setReplyText] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState('');
+  const navigate = useNavigate();
+  const [activeMenu, setActiveMenu] = useState(null);
+  const [editingComment, setEditingComment] = useState(null);
+  const [editText, setEditText] = useState('');
+  const menuRef = useRef(null);
 
 
   // SVG 아이콘 컴포넌트
@@ -34,15 +42,13 @@ const DeleteIcon = () => (
     date: '2024-10-24',
     content: '여기에 게시글 내용이 들어갑니다. 여기에 게시글 내용이 들어갑니다. 여기에 게시글 내용이 들어갑니다.'
   });
-  const [activeMenu, setActiveMenu] = useState(null);
-  const [editingComment, setEditingComment] = useState(null);
-  const [editText, setEditText] = useState('');
-  const menuRef = useRef(null);
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setActiveMenu(null);
+        setIsMenuOpen(false);
       }
     };
   
@@ -85,7 +91,7 @@ const DeleteIcon = () => (
       });
       setComments(updatedComments);
       setReplyText('');
-      setReplyingTo(null);
+      setReplyingTo(prev => ({...prev, [commentId]: false}));
     }
   };
 
@@ -145,29 +151,41 @@ const DeleteIcon = () => (
     setActiveMenu(null);
   };
 
-  // const toggleMenu = (commentId) => {
-  //   setActiveMenu(activeMenu === commentId ? null : commentId);
-  // };
-
-  const toggleReply = (commentId) => {
-    setReplyingTo(replyingTo === commentId ? null : commentId);
+  const toggleCommentMenu = (commentId) => {
+    setActiveMenu(activeMenu === commentId ? null : commentId);
   };
 
-  const toggleMenu = (e) => {
+  const toggleReply = (commentId) => {
+    setReplyingTo(prev => ({
+      ...prev,
+      [commentId]: !prev[commentId]
+    }));
+  };
+
+  const togglePostMenu = (e) => {
     e.preventDefault();
     setIsMenuOpen(!isMenuOpen);
   };
 
   const handleModifyPost = (e) => {
     e.preventDefault();
-    console.log('게시글 수정:', postInfo.id);
+    setIsEditing(true);
+    setEditedContent(postInfo.content);
     setIsMenuOpen(false);
   };
 
   const handleDeletePost = (e) => {
     e.preventDefault();
-    console.log('게시글 삭제:', postInfo.id);
+    if (window.confirm('게시글을 삭제하시겠습니까?')) {
+      // 여기에 실제 삭제 로직을 추가
+      navigate('/questionboard');
+    }
     setIsMenuOpen(false);
+  };
+
+  const handleSaveEdit = () => {
+    setPostInfo({ ...postInfo, content: editedContent });
+    setIsEditing(false);
   };
 
 
@@ -175,38 +193,51 @@ const DeleteIcon = () => (
     <div className={styles.pageContainer}>
       <div className={styles.postHeader}>
         <h1 className={styles.postTitle}>{postInfo.title}</h1>
-        <div className={styles.postInfo}>
-          <span className={styles.postCategory}>{postInfo.category}</span>
-          <span className={styles.postAuthor}>{postInfo.author}</span>
-          <span className={styles.postDate}>{postInfo.date}</span>
+        <div className={styles.postInfoContainer}>
+    <div className={styles.postInfo}>
+      <span className={styles.postCategory}>{postInfo.category}</span>
+      <span className={styles.postAuthor}>{postInfo.author}</span>
+      <span className={styles.postDate}>{postInfo.date}</span>
+    </div>
+        <div className={styles.overflowMenuContainer} ref={menuRef}>   
+          <a 
+            href="#" 
+            className={styles.btnOverflowMenu} 
+            onClick={togglePostMenu}
+            role="button"
+            aria-haspopup="true"
+            aria-expanded={isMenuOpen}
+          >
+            <span className={styles.blind}>본문 기타 기능</span>
+          </a>
+          {isMenuOpen && (
+            <div className={styles.overflowMenu}>
+              <a href="#" className={styles.modifyLink} onClick={handleModifyPost}>
+                수정하기 <ModifyIcon />
+              </a>
+              <div className={styles.menuDivider}></div>
+              <a href="#" className={styles.deleteLink} onClick={handleDeletePost}>
+                삭제하기 <DeleteIcon />
+              </a>
+            </div>
+          )}
         </div>
-        <div className={styles.overflowMenuContainer}>
-            <a 
-              href="#" 
-              className={styles.btnOverflowMenu} 
-              onClick={toggleMenu}
-              role="button"
-              aria-haspopup="true"
-              aria-expanded={isMenuOpen}
-            >
-              <span className={styles.blind}>본문 기타 기능</span>
-            </a>
-            {isMenuOpen && (
-              <div className={styles.overflowMenu}>
-                <a href="#" className={styles.modifyLink} onClick={handleModifyPost}>
-                  수정하기 <ModifyIcon />
-                </a>
-                <div className={styles.menuDivider}></div>
-                <a href="#" className={styles.deleteLink} onClick={handleDeletePost}>
-                  삭제하기 <DeleteIcon />
-                </a>
-              </div>
-             )
-            }
-          </div>
+      </div>
       </div>
       <div className={styles.postContent}>
-        {postInfo.content}
+        {isEditing ? (
+          <>
+            <textarea
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+              className={styles.editTextarea}
+            />
+            <button onClick={handleSaveEdit} className={styles.button}>저장</button>
+            <button onClick={() => setIsEditing(false)} className={styles.button}>취소</button>
+          </>
+        ) : (
+          postInfo.content
+        )}
       </div>
       <div className={styles.commentSection}>
         <h2>댓글</h2>
@@ -226,7 +257,7 @@ const DeleteIcon = () => (
               <span className={styles.authorName}>{comment.author}</span>
               <div className={styles.commentActions} ref={menuRef}>
                 <div className={styles.menuContainer}>
-                  <button className={styles.menuButton} onClick={() => toggleMenu(comment.id)}>⋮</button>
+                <button className={styles.menuButton} onClick={() => toggleCommentMenu(comment.id)}>⋮</button>
                   {activeMenu === comment.id && (
                     <div className={styles.menuDropdown}>
                       <button onClick={() => handleEdit(comment.id)}>수정</button>
@@ -237,15 +268,17 @@ const DeleteIcon = () => (
               </div>
             </div>
             {editingComment && editingComment.id === comment.id && !editingComment.isReply ? (
-              <div>
-                <textarea
-                  value={editText}
-                  onChange={(e) => setEditText(e.target.value)}
-                  className={styles.editInput}
-                />
+              <div className={styles.editContainer}>
+              <textarea
+                value={editText}
+                onChange={(e) => setEditText(e.target.value)}
+                className={styles.editInput}
+              />
+              <div className={styles.editButtons}>
                 <button onClick={handleEditSubmit} className={styles.button}>저장</button>
                 <button onClick={() => setEditingComment(null)} className={styles.button}>취소</button>
               </div>
+            </div>
             ) : (
               <>
                 <p className={styles.commentText}>{comment.text}</p>
@@ -253,9 +286,11 @@ const DeleteIcon = () => (
               </>
             )}
             <div>
-            <button className={styles.replyButton} onClick={() => toggleReply(comment.id)}>답글</button>
+            <button className={styles.replyButton} onClick={() => toggleReply(comment.id)}>
+              답글
+            </button>
             </div>
-            {replyingTo === comment.id && (
+            {replyingTo[comment.id] && (
               <div className={styles.replyForm}>
                 <span className={styles.replyArrow}>↳</span>
                 <input
@@ -265,7 +300,9 @@ const DeleteIcon = () => (
                   onChange={(e) => setReplyText(e.target.value)}
                   placeholder="답글을 입력하세요"
                 />
-                <button className={styles.button} onClick={() => handleReplySubmit(comment.id)}>답글 작성</button>
+                <button className={styles.button} onClick={() => handleReplySubmit(comment.id)}>
+                  답글 작성
+                </button>
               </div>
             )}
             {comment.replies.map(reply => (
@@ -276,7 +313,7 @@ const DeleteIcon = () => (
                     <span className={styles.authorName}>{reply.author}</span>
                     <div className={styles.replyActions}>
                       <div className={styles.menuContainer} ref={menuRef}>
-                        <button className={styles.menuButton} onClick={() => toggleMenu(reply.id)}>⋮</button>
+                      <button className={styles.menuButton} onClick={() => toggleCommentMenu(reply.id)}>⋮</button>
                         {activeMenu === reply.id && (
                           <div className={styles.menuDropdown}>
                             <button onClick={() => handleEdit(reply.id, true, comment.id)}>수정</button>
@@ -287,14 +324,16 @@ const DeleteIcon = () => (
                     </div>
                   </div>
                   {editingComment && editingComment.id === reply.id && editingComment.isReply ? (
-                    <div>
+                    <div className={styles.editContainer}>
                       <textarea
                         value={editText}
                         onChange={(e) => setEditText(e.target.value)}
                         className={styles.editInput}
                       />
-                      <button onClick={handleEditSubmit} className={styles.button}>저장</button>
-                      <button onClick={() => setEditingComment(null)} className={styles.button}>취소</button>
+                      <div className={styles.editButtons}>
+                        <button onClick={handleEditSubmit} className={styles.button}>저장</button>
+                        <button onClick={() => setEditingComment(null)} className={styles.button}>취소</button>
+                      </div>
                     </div>
                   ) : (
                     <>
