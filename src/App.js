@@ -15,6 +15,7 @@ import QuestionBoard from "./component/QuestionBoard/QuestionBoard";
 
 import CreatePost from "./component/CreatePost/CreatePost";
 import LikeCounselor from "./component/LikeCounselor/LikeCounselor";
+import PostPage from "./component/PostPage/PostPage";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/counselorlist" element={<CounselorList />} />
           <Route path="/counselorlist/counselordetail/:id" element={<CounselorDetail />} />
           <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/postpage" element={<PostPage />} />
           <Route path="/questionboard" element={<QuestionBoard />} />
           <Route path="/likecounselor" element={<LikeCounselor />} />
         </Routes>
