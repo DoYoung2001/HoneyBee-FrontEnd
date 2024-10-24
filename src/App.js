@@ -16,6 +16,9 @@ import QuestionBoard from "./component/QuestionBoard/QuestionBoard";
 import MyReserve from "./component/MyReserve/MyReserve";
 import CreatePost from "./component/CreatePost/CreatePost";
 
+import ConsultCategory from "./component/ConsultCategory/ConsultCategory";
+import HospitalList from "./component/HospitalList/HospitalList";
+import ConsultReservation from "./component/ConsultReservation/ConsultReservation";
 
 function App() {
   return (
@@ -30,10 +33,16 @@ function App() {
           <Route path="/signup/member" element={<Member />} />
           <Route path="/signup/counselor" element={<Counselor />} />
           <Route path="/counselorlist" element={<CounselorList />} />
-          <Route path="/counselorlist/counselordetail/:id" element={<CounselorDetail />} />
+          <Route
+            path="/counselorlist/counselordetail/:id"
+            element={<CounselorDetail />}
+          />
           <Route path="/myreserve" element={<MyReserve />} />
           <Route path="/createpost" element={<CreatePost />} />
           <Route path="/questionboard" element={<QuestionBoard />} />
+          <Route path="/consult-category" element={<ConsultCategory />} />
+          <Route path="/hospital-list" element={<HospitalList />} />
+          <Route path="/consult-reservation" element={<ConsultReservation />} />
         </Routes>
       </div>
     </Router>
