@@ -13,7 +13,6 @@ import CounselorList from "./component/CounselorList/CounselorList";
 import CounselorDetail from "./component/CounselorDetail/CounselorDetail";
 import QuestionBoard from "./component/QuestionBoard/QuestionBoard";
 
-import MyReserve from "./component/MyReserve/MyReserve";
 import CreatePost from "./component/CreatePost/CreatePost";
 
 
@@ -31,7 +30,6 @@ function App() {
           <Route path="/signup/counselor" element={<Counselor />} />
           <Route path="/counselorlist" element={<CounselorList />} />
           <Route path="/counselorlist/counselordetail/:id" element={<CounselorDetail />} />
-          <Route path="/myreserve" element={<MyReserve />} />
           <Route path="/createpost" element={<CreatePost />} />
           <Route path="/questionboard" element={<QuestionBoard />} />
         </Routes>
