@@ -14,6 +14,7 @@ const PostPage = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [editingComment, setEditingComment] = useState(null);
   const [editText, setEditText] = useState('');
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const menuRef = useRef(null);
 
 
@@ -176,7 +177,7 @@ const DeleteIcon = () => (
 
   const handleDeletePost = (e) => {
     e.preventDefault();
-    if (window.confirm('게시글을 삭제하시겠습니까?')) {
+    if (setShowDeleteModal(true)) {
       // 여기에 실제 삭제 로직을 추가
       navigate('/questionboard');
     }
@@ -232,8 +233,10 @@ const DeleteIcon = () => (
               onChange={(e) => setEditedContent(e.target.value)}
               className={styles.editTextarea}
             />
-            <button onClick={handleSaveEdit} className={styles.button}>저장</button>
-            <button onClick={() => setIsEditing(false)} className={styles.button}>취소</button>
+            <div className={styles.editButtons}>
+              <button onClick={handleSaveEdit} className={styles.button}>저장</button>
+              <button onClick={() => setIsEditing(false)} className={styles.button}>취소</button>
+            </div>
           </>
         ) : (
           postInfo.content
@@ -347,6 +350,17 @@ const DeleteIcon = () => (
           </div>
         ))}
       </div>
+      {showDeleteModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <p>게시글을 삭제하시겠습니까?</p>
+            <div className={styles.modalButtons}>
+              <button onClick={handleDelete}>삭제</button>
+              <button onClick={() => setShowDeleteModal(false)}>취소</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
