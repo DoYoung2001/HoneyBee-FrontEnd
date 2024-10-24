@@ -123,7 +123,9 @@ function NavBar() {
             </div>
           )}
         </li>
-        <li className={styles.navbarItem} onMouseEnter={handleBoardMouseEnter}
+        <li
+          className={styles.navbarItem}
+          onMouseEnter={handleBoardMouseEnter}
           onClick={handleQuestionBoardClick}
         >
           <a href="#">게시판</a>
@@ -165,16 +167,24 @@ function NavBar() {
           마이페이지
         </button>
         {isLoggedIn() ? (
-          <button className={styles.signButton} onClick={handleLogout}>
-            Sign Out
-          </button>
+          <>
+            <button
+              className={styles.wishlistButton}
+              onClick={() => navigate("/wishlist")}
+            >
+              찜 🖤
+            </button>
+            <button className={styles.signButton} onClick={handleLogout}>
+              Sign Out
+            </button>
+          </>
         ) : (
           <>
-            <button className={styles.signButton} onClick={handleSignIn}>
-              Sign In
-            </button>
             <button className={styles.register} onClick={handleRegister}>
               Sign Up
+            </button>
+            <button className={styles.signButton} onClick={handleSignIn}>
+              Sign In
             </button>
           </>
         )}

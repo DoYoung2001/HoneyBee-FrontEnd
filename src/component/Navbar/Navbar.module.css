@@ -6,8 +6,8 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #000000;
-  position: sticky; /* 스크롤 시 고정 */
-  top: 0; /* 상단에 위치 */
+  position: sticky;
+  top: 0;
 }
 
 /* 로고 스타일 */
@@ -32,6 +32,8 @@
   color: #000000;
   text-decoration: none;
   font-size: 18px;
+  flex-shrink: 0;
+  flex-basis: auto;
 }
 
 .navbarItem a:hover {
@@ -47,6 +49,7 @@
   top: 101%;
   left: 0px;
   width: 100%;
+  position: absolute;
 }
 
 .dropdownMenu ul {
@@ -107,6 +110,21 @@
 .mypageButton:active {
   background-color: #bcbcbc;
   color: #000;
+}
+
+.wishlistButton {
+  border-radius: 3px;
+  border: 1px solid #000;
+  background-color: #ffffff;
+  padding: 5px 10px;
+  color: #000;
+  cursor: pointer;
+  width: 80px;
+}
+
+.wishlistButton:active {
+  background-color: #cacaca;
+  color: #357038;
 }
 
 .signButton {
