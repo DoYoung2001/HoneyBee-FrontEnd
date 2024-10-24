@@ -73,7 +73,7 @@ const HospitalList = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>상담 예약</h1>
+      <h1 className={styles.title}>병원 목록</h1>
 
       <div className={styles.searchSection}>
         <div className={styles.searchBar}>
@@ -92,14 +92,6 @@ const HospitalList = () => {
         <div className={styles.separator} />
 
         <div className={styles.filters}>
-          <button
-            className={`${styles.filterButton} ${
-              selectedFilter === "가까운 순" ? styles.activeFilter : ""
-            }`}
-            onClick={() => handleFilterClick("가까운 순")}
-          >
-            가까운 순
-          </button>
           <button
             className={`${styles.filterButton} ${
               selectedFilter === "평점 순" ? styles.activeFilter : ""
