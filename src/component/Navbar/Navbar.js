@@ -62,12 +62,14 @@ function NavBar() {
     setShowBoardDropdown(false);
   };
 
-  // 상담 카테고리 클릭 핸들러
-  const handleConsultCategoryClick = () => {
-    navigate("/consult-category"); // 상담 카테고리 페이지로 이동
+  const handleHospitalListClick = () => {
+    navigate("/hospital-list");
   };
 
-  // 상담사 목록 클릭 핸들러
+  const handleConsultCategoryClick = () => {
+    navigate("/consult-category");
+  };
+
   const handleConsultListClick = () => {
     navigate("/counselorlist"); // 상담사 목록 페이지로 이동
   };
@@ -116,14 +118,19 @@ function NavBar() {
               onMouseLeave={handleHospitalMouseLeave}
             >
               <ul>
-                <li className={`${styles.dropdownItem} ${styles.hospitalItem}`}>
+                <li
+                  className={`${styles.dropdownItem} ${styles.hospitalItem}`}
+                  onClick={handleHospitalListClick}
+                >
                   병원 목록
                 </li>{" "}
               </ul>
             </div>
           )}
         </li>
-        <li className={styles.navbarItem} onMouseEnter={handleBoardMouseEnter}
+        <li
+          className={styles.navbarItem}
+          onMouseEnter={handleBoardMouseEnter}
           onClick={handleQuestionBoardClick}
         >
           <a href="#">게시판</a>
