@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import styles from "./ConsultCategory.module.css";
 
 const consultCategories = [
+  { name: "전체보기", icon: "⋯" },
+  { name: "심리 상담", icon: "🧠", counselors: 12, hospitals: 6 },
+  { name: "정신 건강 상담", icon: "💚", counselors: 7, hospitals: 3 },
   { name: "우울증 상담", icon: "😔", counselors: 15, hospitals: 5 },
   { name: "불안 장애 상담", icon: "😨", counselors: 10, hospitals: 3 },
   { name: "스트레스 관리 상담", icon: "😓", counselors: 8, hospitals: 4 },
@@ -10,9 +13,12 @@ const consultCategories = [
   { name: "가족 상담", icon: "👪", counselors: 10, hospitals: 3 },
   { name: "청소년 상담", icon: "👦", counselors: 8, hospitals: 4 },
   { name: "성인 상담", icon: "👨‍🦳", counselors: 15, hospitals: 5 },
+  { name: "노인 상담", icon: "👴", counselors: 4, hospitals: 1 },
   { name: "자존감 회복 상담", icon: "💪", counselors: 10, hospitals: 3 },
   { name: "트라우마 치료 상담", icon: "💔", counselors: 8, hospitals: 4 },
-  { name: "전체보기", icon: "⋯" },
+  { name: "중독 상담", icon: "🍺", counselors: 10, hospitals: 2 },
+  { name: "식이장애 상담", icon: "🍏", counselors: 6, hospitals: 1 },
+  { name: "애도 상담", icon: "😢", counselors: 5, hospitals: 2 },
 ];
 
 const ConsultCategory = () => {
