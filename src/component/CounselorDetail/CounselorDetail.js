@@ -1,12 +1,13 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import styles from "./CounselorDetail.module.css";
 
 const CounselorDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const location = useLocation();
 
-  const counselor = {
+  const counselor = location.state?.counselor || {
     id: 1,
     name: "김상담",
     address: "서울시 강남구",
@@ -45,6 +46,10 @@ const CounselorDetail = () => {
     navigate(`/counselorlist/counselordetail/${id}/reviews`);
   };
 
+  if (!counselor) {
+    return <div>상담사 정보를 불러올 수 없습니다.</div>;
+  }
+
   return (
     <div className={styles.counselorDetail}>
     <div className={styles.counselorHeader}>
@@ -76,27 +81,27 @@ const CounselorDetail = () => {
         <h4>자격 및 경력</h4>
         <h5>자격증</h5>
         <ul>
-          {counselor.certifications.map((cert, index) => (
-            <li key={index}>{cert}</li>
-          ))}
-        </ul>
+            {counselor.certifications?.map((cert, index) => (
+              <li key={`cert-${index}`}>{cert}</li>
+            ))}
+          </ul>
         <h5>학력</h5>
         <ul>
-          {counselor.education.map((edu, index) => (
-            <li key={index}>{edu}</li>
-          ))}
-        </ul>
+            {counselor.education?.map((edu, index) => (
+              <li key={`edu-${index}`}>{edu}</li>
+            ))}
+          </ul>
         <h5>경력</h5>
         <ul>
-          {counselor.experience.map((exp, index) => (
-            <li key={index}>{exp}</li>
-          ))}
-        </ul>
+            {counselor.experience?.map((exp, index) => (
+              <li key={`exp-${index}`}>{exp}</li>
+            ))}
+          </ul>
       </div>
       <hr className={styles.separator} />
       <div className={styles.detailItem}>
         <h4>상담 분야</h4>
-        <p>{counselor.categories.join(", ")}</p>
+        <p>{counselor.categories?.join(", ") || "정보 없음"}</p>
       </div>
       <hr className={styles.separator} />
       <div className={styles.detailItem}>
@@ -106,7 +111,7 @@ const CounselorDetail = () => {
       <hr className={styles.separator} />
       <div className={styles.detailItem}>
         <h4>사용 가능 언어</h4>
-        <p>{counselor.languages.join(", ")}</p>
+        <p>{counselor.languages?.join(", ") || "정보 없음"}</p>
       </div>
       <hr className={styles.separator} />
       <div className={styles.detailItem}>

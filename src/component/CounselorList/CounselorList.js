@@ -39,8 +39,8 @@ const CounselorList = () => {
     }
   };
 
-  const handleCounselorClick = (counselorId) => {
-    navigate(`/counselorlist/counselordetail/${counselorId}`);
+  const handleCounselorClick = (counselor) => {
+    navigate(`/counselorlist/counselordetail/${counselor.id}`, { state: { counselor } });
   };
 
   const handleSortChange = (event) => {
@@ -105,9 +105,9 @@ const CounselorList = () => {
       </div>
 
       <div className={styles.counselorList}>
-        {getCurrentCounselors().map((counselor) => (
+        {getCurrentCounselors()?.map((counselor) => (
           <div key={counselor.id} className={styles.counselorItem}
-          onClick={() => handleCounselorClick(counselor.id)}>
+          onClick={() => handleCounselorClick(counselor)}>
             <img src={counselor.image} alt={counselor.name} className={styles.counselorImage} />
             <div className={styles.counselorInfo}>
               <div className={styles.nameAddressContainer}>
