@@ -1,0 +1,153 @@
+.counselorReviews {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+  }
+  
+  .counselorHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .counselorImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .counselorInfo h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #4169e1;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+  }
+  
+  .stars {
+    color: #6495ed;
+    margin-right: 5px;
+  }
+  
+  .reviewStats {
+    margin-bottom: 20px;
+  }
+  
+  .statBar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .barContainer {
+    flex-grow: 1;
+    background-color: #f0f0f0;
+    height: 20px;
+    margin: 0 10px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .bar {
+    background-color: #6495ed;
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+  
+  .statBar:hover .bar {
+    background-color: #4169e1;
+  }
+  
+  .sortControls {
+    margin-bottom: 20px;
+    margin-left: 83%;
+  }
+  
+  .sortControls button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background: none;
+    border: 1px solid #6495ed;
+    color: #6495ed;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .sortControls button.active {
+    background-color: #6495ed;
+    color: white;
+  }
+  
+  .reviewItem {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  .reviewTitle {
+    text-align: left;
+    color: #4169e1;
+    margin-bottom: 10px;
+  }
+  
+  .reviewMeta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .reviewRating {
+    color: #6495ed;
+  }
+  
+  .ratingNumber {
+    color: #666;
+    margin-left: 5px;
+  }
+  
+  .collapsed {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-align: left;
+  }
+  
+  .expanded {
+    white-space: pre-wrap;
+    text-align: left;
+  }
+  
+  .toggleButton {
+    background: none;
+    border: none;
+    color: #4169e1;
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .backButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4169e1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .backButton:hover {
+    background-color: #6495ed;
+  }

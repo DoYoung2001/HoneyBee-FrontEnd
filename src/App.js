@@ -25,6 +25,7 @@ import PostPage from "./component/PostPage/PostPage";
 import ConsultCategory from "./component/ConsultCategory/ConsultCategory";
 import HospitalList from "./component/HospitalList/HospitalList";
 import ConsultReservation from "./component/ConsultReservation/ConsultReservation";
+import CounselorReviews from "./component/CounselorReviews/CounselorReviews";
 
 // 스크롤 위치를 조정하는 컴포넌트
 const ScrollToTop = () => {
@@ -63,6 +64,7 @@ function App() {
             path="/counselorlist/counselordetail/:id"
             element={<CounselorDetail />}
           />
+          <Route path="/counselorreviews" element={<CounselorReviews />} />
           <Route path="/createpost" element={<CreatePost addPost={addPost} />} />
           <Route path="/postpage/:id" element={<PostPage />} />
           <Route path="/questionboard" element={<QuestionBoard posts={posts} />} />
