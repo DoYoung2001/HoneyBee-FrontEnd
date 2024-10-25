@@ -47,6 +47,10 @@ const QuestionBoard = () => {
     navigate('/createpost');
   };
 
+  const handleQuestionClick = (question) => {
+    navigate(`/postpage/${question.id}`, { state: { question } });
+  };
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const totalPages = Math.ceil(questions.length / questionsPerPage);
@@ -60,7 +64,11 @@ const QuestionBoard = () => {
       
       <div className={styles.questionsContainer}>
         {currentQuestions.map(question => (
-          <div key={question.id} className={styles.questionItem}>
+          <div 
+            key={question.id} 
+            className={styles.questionItem} 
+            onClick={() => handleQuestionClick(question)}
+          >
             <span className={styles.category}>{question.category}</span>
             <div className={styles.questionContent}>
               <h2 className={styles.questionTitle}>{question.title}</h2>
@@ -77,7 +85,7 @@ const QuestionBoard = () => {
           </div>
         ))}
       </div>
-
+      
       <div className={styles.pagination}>
         <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1} className={styles.pageArrow}>
           &lt;

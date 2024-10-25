@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './PostPage.module.css';
 
 const PostPage = () => {
@@ -16,6 +16,7 @@ const PostPage = () => {
   const [editText, setEditText] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const menuRef = useRef(null);
+  const location = useLocation();
 
 
   // SVG 아이콘 컴포넌트
@@ -35,14 +36,15 @@ const DeleteIcon = () => (
   </svg>
 );
 
-  const [postInfo, setPostInfo] = useState({
-    id: '223328025788', // 예시 ID
-    title: '게시글 제목',
-    category: '스트레스',
-    author: '직장인건가요',
-    date: '2024-10-24',
-    content: '여기에 게시글 내용이 들어갑니다. 여기에 게시글 내용이 들어갑니다. 여기에 게시글 내용이 들어갑니다.'
-  });
+const [postInfo, setPostInfo] = useState({
+  id: '',
+  title: '',
+  category: '',
+  author: '',
+  date: '',
+  content: ''
+});
+
 
 
   useEffect(() => {
@@ -58,6 +60,25 @@ const DeleteIcon = () => (
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    if (location.state && location.state.question) {
+      const { id, title, category, author, date, content } = location.state.question;
+      setPostInfo({
+        id: id || '',
+        title: title || '',
+        category: category || '',
+        author: author || '',
+        date: date ? new Date(date).toLocaleDateString() : '',
+        content: content || ''
+      });
+    } else {
+      // 게시물 정보가 없는 경우 처리 (예: 오류 메시지 표시 또는 리다이렉트)
+      console.error('게시물 정보를 찾을 수 없습니다.');
+      navigate('/questionboard'); // 게시판으로 리다이렉트
+    }
+  }, [location.state, navigate]);
+  
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();

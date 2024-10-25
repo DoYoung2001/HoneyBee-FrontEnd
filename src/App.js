@@ -57,7 +57,7 @@ function App() {
             element={<CounselorDetail />}
           />
           <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/postpage" element={<PostPage />} />
+          <Route path="/postpage/:id" element={<PostPage />} />
           <Route path="/questionboard" element={<QuestionBoard />} />
           <Route path="/likecounselor" element={<LikeCounselor />} />
           <Route path="/consult-category" element={<ConsultCategory />} />
