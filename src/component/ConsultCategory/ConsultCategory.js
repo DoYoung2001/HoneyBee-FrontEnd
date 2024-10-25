@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./ConsultCategory.module.css";
+import { BrainIcon } from "../Icon/Icon.js";
+import { HeartPartnerHandshakeIcon } from "../Icon/Icon.js";
 
 const consultCategories = [
   { name: "전체보기", icon: "⋯" },
-  { name: "심리 상담", icon: "🧠", counselors: 12, hospitals: 6 },
-  { name: "정신 건강 상담", icon: "💚", counselors: 7, hospitals: 3 },
+  {
+    name: "심리 상담",
+    icon: <HeartPartnerHandshakeIcon size={24} />,
+    counselors: 12,
+    hospitals: 6,
+  },
+  {
+    name: "정신 건강 상담",
+    icon: <BrainIcon size={24} />,
+    counselors: 7,
+    hospitals: 3,
+  },
   { name: "우울증 상담", icon: "😔", counselors: 15, hospitals: 5 },
   { name: "불안 장애 상담", icon: "😨", counselors: 10, hospitals: 3 },
   { name: "스트레스 관리 상담", icon: "😓", counselors: 8, hospitals: 4 },
@@ -26,6 +38,7 @@ const ConsultCategory = () => {
   const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
   const [filteredCategories, setFilteredCategories] =
     useState(consultCategories); // 필터링된 카테고리 상태
+  const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
 
   const handleMouseEnter = (category) => {
@@ -62,24 +75,23 @@ const ConsultCategory = () => {
   return (
     <div className={styles.consultCategory}>
       <h1 className={styles.title}>상담 카테고리</h1>
-      {/* 검색 섹션 */}
       <div className={styles.searchBox}>
         <div className={styles.searchContainer}>
           <input
             type="text"
             placeholder="상담 종류를 입력하세요"
             className={styles.searchInput}
-            value={searchTerm} // 입력값을 상태로 관리
-            onChange={handleSearchChange} // 입력값 변경 시 핸들러 호출
-            onKeyDown={handleKeyPress} // 키 입력 시 핸들러 호출
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyPress}
           />
           <button className={styles.searchButton} onClick={handleSearchClick}>
             🔍
           </button>
         </div>
       </div>
-      {/* 카테고리 클릭 섹션 */}
-      <div className={styles.categorySeparator}></div> {/* 구분선 추가 */}
+
+      <div className={styles.categorySeparator}></div>
       <div className={styles.categoryGrid}>
         {filteredCategories.length > 0 ? (
           filteredCategories.map((category, index) => (
