@@ -1,0 +1,112 @@
+.consultCategory {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.searchBox {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.searchContainer {
+  display: flex;
+}
+
+.searchInput {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+}
+
+.searchButton {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.searchHint {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.searchDescription {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.categorySeparator {
+  height: 1px;
+  background-color: #ccc;
+  margin: 30px 0;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3개씩 배치 */
+  gap: 15px;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.categoryItem:hover {
+  background-color: #f0f0f0;
+}
+
+.categoryIcon {
+  font-size: 24px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.categoryName {
+  font-size: 14px;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  font-size: 12px;
+  color: #333;
+  z-index: 10; /* 다른 요소 위에 표시되도록 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.noResultsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

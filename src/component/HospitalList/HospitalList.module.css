@@ -1,0 +1,176 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.searchSection {
+  margin-bottom: 20px;
+}
+
+.searchBar {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.searchButton {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.searchIcon {
+  margin-left: 10px;
+  color: #666;
+}
+
+.searchSection {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.separator {
+  height: 2px;
+  background-color: #ddd;
+  margin: 10px 0;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.filterButton {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.filterButton:hover {
+  background-color: #e0e0e0;
+}
+
+.activeFilter {
+  background-color: #e8f5e9;
+  border-color: #4caf50;
+  border-radius: 2px;
+  color: #4caf50;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.hospitalList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hospitalItem {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  position: relative;
+}
+
+.hospitalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.hospitalInfo h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.hospitalHeader {
+  display: flex;
+  align-items: center;
+}
+
+.hospitalHeader h2 {
+  margin-right: 10px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
+}
+
+.rating span:first-child {
+  color: #ffd700;
+}
+
+.location {
+  display: flex;
+  gap: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+  margin: 0 5px;
+}
+
+.pagination button:disabled {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}
+
+.pagination button:hover {
+  background-color: #a3d3aa;
+  transform: translateY(-2px);
+}
+
+.pagination button.active {
+  background-color: #bdc3c7;
+  transform: translateY(-2px);
+}
