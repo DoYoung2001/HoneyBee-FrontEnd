@@ -1,42 +1,52 @@
 import React, { useState } from "react";
-import styles from "./ConsultReservation.module.css"; // CSS 모듈 가져오기
+import styles from "./ConsultReservation.module.css";
 
 const ConsultReservation = () => {
   const [selectedDate, setSelectedDate] = useState(31);
   const [selectedTime, setSelectedTime] = useState(null);
+  const [month, setMonth] = useState(9);
+  const [year, setYear] = useState(2024);
 
-  const timeSlots = ["6:00", "6:30", "7:00", "7:30", "8:00"];
+  const timeSlots = ["10:00", "10:30", "11:00", "11:30", "13:00"];
 
   const generateCalendarData = () => {
     const days = [];
-    const month = 9; // 10월
-    const year = 2024;
+    const today = new Date();
+    const currentDay = today.getDate();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
 
     // 첫 날의 요일을 구하기
     const firstDay = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month + 1, 0).getDate(); // 마지막 날
+    const lastDay = new Date(year, month, lastDate).getDay(); // 마지막 날의 요일
 
-    // 빈 날짜 추가
+    // 빈 날짜 추가 (이전 달 빈 칸)
     for (let i = 0; i < firstDay; i++) {
       days.push({ date: null, isNextMonth: true });
     }
 
     // 해당 월 날짜 추가
     for (let i = 1; i <= lastDate; i++) {
+      const dayOfWeek = new Date(year, month, i).getDay(); // 요일 구하기
+      const dateToCheck = new Date(year, month, i);
+
       days.push({
         date: i,
-        isToday: i === new Date().getDate() && month === new Date().getMonth(),
+        isToday:
+          i === currentDay && month === currentMonth && year === currentYear,
         isNextMonth: false,
+        isSunday: dayOfWeek === 0, // 일요일 여부
+        isSaturday: dayOfWeek === 6, // 토요일 여부
+        isPast: dateToCheck < today.setHours(0, 0, 0, 0), // 오늘 이전 날짜인지 여부
       });
     }
 
-    // 다음 달 날짜 추가 (예: 한 주가 다 차지 않으면)
-    const remainingDays = 42 - days.length; // 6주 * 7일
-    for (let i = 1; i <= remainingDays; i++) {
-      days.push({
-        date: null,
-        isNextMonth: true,
-      });
+    // 마지막 주의 남은 칸만 채우기 (토요일까지)
+    if (lastDay < 6) {
+      for (let i = lastDay + 1; i <= 6; i++) {
+        days.push({ date: null, isNextMonth: true });
+      }
     }
 
     return days;
@@ -50,41 +60,78 @@ const ConsultReservation = () => {
     setSelectedTime(time);
   };
 
+  const handlePrevMonth = () => {
+    if (month === 0) {
+      setMonth(11);
+      setYear(year - 1);
+    } else {
+      setMonth(month - 1);
+    }
+  };
+
+  const handleNextMonth = () => {
+    if (month === 11) {
+      setMonth(0);
+      setYear(year + 1);
+    } else {
+      setMonth(month + 1);
+    }
+  };
+
   return (
     <div className={styles["calendar-container"]}>
+      <h1 className={styles.title}>예약하기</h1>
+      <div className={styles.separator}></div>
       <header className={styles["calendar-header"]}>
         <div className={styles["month-selector"]}>
-          <button className={styles["month-arrow"]}>&lt;</button>
-          <span>2024.10</span>
-          <button className={styles["month-arrow"]}>&gt;</button>
+          <button className={styles["month-arrow"]} onClick={handlePrevMonth}>
+            &lt;
+          </button>
+          <span>{`${year}.${month + 1}`}</span> {/* 0부터 시작하므로 +1 */}
+          <button className={styles["month-arrow"]} onClick={handleNextMonth}>
+            &gt;
+          </button>
         </div>
       </header>
 
-      <div className={styles["calendar-grid"]}>
-        <div className={styles["weekdays"]}>
-          <div>일</div>
-          <div>월</div>
-          <div>화</div>
-          <div>수</div>
-          <div>목</div>
-          <div>금</div>
-          <div>토</div>
-        </div>
+      <div className={styles["calendar-box"]}>
+        <div className={styles["calendar-grid"]}>
+          <div className={styles["weekdays"]}>
+            <div>일</div>
+            <div>월</div>
+            <div>화</div>
+            <div>수</div>
+            <div>목</div>
+            <div>금</div>
+            <div>토</div>
+          </div>
 
-        <div className={styles["dates"]}>
-          {generateCalendarData().map((day, index) => (
-            <div
-              key={index}
-              className={`${styles["date-cell"]} ${
-                day.isToday ? styles["today"] : ""
-              } 
-          ${day.isNextMonth ? styles["next-month"] : ""} 
-          ${selectedDate === day.date ? styles["selected"] : ""}`}
-              onClick={() => day.date && handleDateClick(day.date)} // 날짜가 null이 아닐 때만 클릭 이벤트
-            >
-              {day.date !== null ? day.date : ""}
-            </div>
-          ))}
+          <div className={styles["dates"]}>
+            {generateCalendarData().map((day, index) => (
+              <div
+                key={index}
+                className={`${styles["date-cell"]} 
+                          ${day.isToday ? styles["today"] : ""} 
+                          ${day.isNextMonth ? styles["next-month"] : ""} 
+                          ${day.isSunday ? styles["sunday"] : ""} 
+                          ${day.isSaturday ? styles["saturday"] : ""} 
+                          ${day.isPast ? styles["past-date"] : ""} 
+                          ${
+                            selectedDate === day.date ? styles["selected"] : ""
+                          }`}
+                onClick={() =>
+                  !day.isPast && day.date && handleDateClick(day.date)
+                } // 지나간 날짜는 클릭 금지
+              >
+                {day.date !== null ? day.date : ""}
+                {day.isToday && day.date !== null && (
+                  <div className={styles["today-label"]}>
+                    오늘
+                  </div> /* 오늘 날짜에 '오늘' 표시 */
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
