@@ -21,6 +21,7 @@ import QuestionBoard from "./component/QuestionBoard/QuestionBoard";
 
 import CreatePost from "./component/CreatePost/CreatePost";
 import LikeCounselor from "./component/LikeCounselor/LikeCounselor";
+import PostPage from "./component/PostPage/PostPage";
 
 // 스크롤 위치를 조정하는 컴포넌트
 const ScrollToTop = () => {
@@ -53,6 +54,7 @@ function App() {
             element={<CounselorDetail />}
           />
           <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/postpage" element={<PostPage />} />
           <Route path="/questionboard" element={<QuestionBoard />} />
           <Route path="/likecounselor" element={<LikeCounselor />} />
         </Routes>
