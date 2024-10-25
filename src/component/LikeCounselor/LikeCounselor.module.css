@@ -1,0 +1,152 @@
+.likeCounselorContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .controlPanel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .checkAllContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .deleteButton {
+    padding: 8px 16px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .deleteButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .counselorList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .counselorCard {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: white;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .counselorCard:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .checkboxContainer {
+    margin-right: 20px;
+  }
+  
+  .counselorInfo {
+    display: flex;
+    flex-grow: 1;
+    gap: 20px;
+    cursor: pointer;
+  }
+  
+  .counselorInfo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .counselorDetails {
+    flex-grow: 1;
+  }
+  
+  .counselorDetails h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  
+  .stars {
+    color: #ffd700;
+  }
+  
+  .reviewCount {
+    color: #666;
+  }
+  
+  .categories {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .category {
+    padding: 4px 8px;
+    background-color: #f0f0f0;
+    border-radius: 16px;
+    font-size: 0.9rem;
+  }
+  
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .modalButtons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  
+  .modalButtons button {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .modalButtons button:first-child {
+    background-color: #ff4444;
+    color: white;
+  }
+  
+  .modalButtons button:last-child {
+    background-color: #f0f0f0;
+  }

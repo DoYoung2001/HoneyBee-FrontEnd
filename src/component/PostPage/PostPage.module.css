@@ -1,0 +1,403 @@
+
+.pageContainer {
+    max-width: 70%;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .postHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .postTitle {
+    flex-grow: 1;
+    margin-left: 1%;
+    text-align: left;
+    font-size: 28px;
+    color: black;
+  }
+  
+  .postInfoContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .postInfo {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+  }
+
+  .postCategory,
+  .postAuthor,
+  .postDate {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .postCategory {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .postContent {
+    margin-bottom: 50px;
+    line-height: 1.6;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-height: 400px;
+    text-align: left;
+  }
+  
+  .postActions {
+    margin-top: 1rem;
+  }
+
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .modalButtons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  
+  .modalButtons button {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .modalButtons button:first-child {
+    background-color: #ffa3a3;
+    color: white;
+  }
+  
+  .modalButtons button:first-child:hover {
+    background-color: #f85656;
+  }
+
+  .modalButtons button:last-child {
+    background-color: #f0f0f0;
+  }
+
+  .modalButtons button:last-child:hover {
+    background-color: #dcdbdb;
+  }
+  
+  .editTextarea {
+    width: 95%;
+    min-height: 300px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .actionLink {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .actionLink:hover {
+    text-decoration: underline;
+  }
+  
+  .actionLink svg {
+    margin-left: 5px;
+  }
+  
+  .editButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+  
+  .editButtons button {
+    margin-left: 10px;
+  }
+  
+  .overflowMenuContainer {
+    position: relative;
+  }
+  
+  .btnOverflowMenu {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23000000"><circle cx="12" cy="12" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="12" cy="19" r="2"/></svg>') no-repeat center;
+    cursor: pointer;
+  }
+  
+  .blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .overflowMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    min-width: 100px;
+  }
+  
+  .overflowMenu a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  
+  .modifyLink {
+    color: #666; 
+  }
+  
+  .deleteLink {
+    color: #ff0000; 
+  }
+  
+  .menuDivider {
+    height: 1px;
+    background-color: #e0e0e0; 
+    margin: 5px 0;
+  }
+  
+  .overflowMenu a:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .overflowMenu a svg {
+    margin-left: 10px;
+  }
+
+
+  .commentSection {
+    margin-top: 50px; 
+  }
+  
+  .commentSection h2 {
+    text-align: left; 
+    margin-bottom: 1rem; 
+    margin-left: 3px;
+  }
+
+  .commentForm, .replyForm {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .commentInput, .replyInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .button {
+    background-color: #6495ed;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .button:hover {
+     background-color: #4169e1;
+  }
+  
+  .comment {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+  }
+  
+  .commentContent, .replyContent {
+    text-align: left;
+  }
+  
+  .authorName {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .commentText {
+    color: #555;
+    margin: 10px 0;
+    text-align: left;
+  }
+  
+  .timestamp {
+    color: #888;
+    font-size: 0.8em;
+    display: block;
+    margin-top: 5px;
+    text-align: left;
+  }
+  
+  .comment, .reply {
+    position: relative;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+  }
+  
+  .commentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .replyHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3%;
+  }
+
+  .replyActions {
+    position: absolute;
+    top: 15px;
+    right: 0;
+  }
+  
+  .commentActions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .menuContainer {
+    position: relative;
+  }
+  
+  .menuButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .replyButton {
+    background: none;
+    border: 1px solid gray; 
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 95%;
+    margin-bottom: 2%;
+    align-items: center;
+    white-space: nowrap;  /* 글씨 가로고정 */ 
+  }
+
+  .menuDropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+    white-space: nowrap;
+  }
+  
+  .menuDropdown button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .menuDropdown button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .reply {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #eeeded;
+  }
+  
+  .replyArrow {
+    margin-right: 5px;
+  }
+  
+  .replyContent {
+    flex-grow: 1;
+  }
+  
+  .replyTextContent {
+    margin-left: 20px;
+  }
+
+  .editContainer {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .editInput {
+    width: 95%;
+    min-height: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  .editButtons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-right: 3%;
+  }
+  
+  .editButtons button {
+    margin-left: 10px;
+  }

@@ -1,71 +1,173 @@
-.mypageContainer {
-  margin: 15px;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
+  background-color: #fff; /* 배경색 추가 */
+  min-height: 100vh; /* 전체 높이 설정 */
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  text-align: left;
+  color: #000; /* 검정색 추가 */
+}
+
+.tabContainer {
   display: flex;
-  gap: 30px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
 }
 
-.userprofile {
-  border: 1px solid #ccc;
+.tabButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.tabButton.active {
+  border-bottom: 2px solid #4caf50;
+  color: #4caf50;
+}
+
+.contentSection {
+  background-color: #fff;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  width: 20%;
-  height: 300px;
 }
 
-.mypagePhoto {
-  background-color: #c0c0c0;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  margin-left: 30px;
-  margin-right: 30px;
-  border-radius: 5px;
-  height: 55%;
+/* sectionHeader 스타일 수정 */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  margin-top: 20px;
+  background-color: #ecedef; /* 배경색을 더 진하게 수정 */
+  border-radius: 8px 8px 0 0;
+}
+
+.sectionHeader h2 {
+  font-size: 18px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333; /* 글자색도 더 진하게 */
+}
+
+/* 첫 번째 sectionHeader의 상단 여백 제거 */
+.contentSection > div:first-child.sectionHeader {
+  margin-top: 0;
+}
+
+/* 각 섹션 그룹에 대한 스타일 추가 */
+.sectionGroup {
+  margin-bottom: 20px; /* 하단 여백 추가 */
+  background-color: white;
+  border-radius: 8px; /* 전체 모서리 둥글게 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
+}
+
+/* 마지막 섹션의 하단 여백 제거 */
+.contentSection > div:last-child.sectionGroup {
+  margin-bottom: 0;
+}
+
+.toggle {
+  color: #666;
+}
+
+.reservationCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.profileSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-.photoButton {
-  background-color: #d3d3d3;
-  border: 1px solid #000000;
-  border-radius: 3px;
-  font-size: 10px;
-  width: 100px;
-  height: 20px;
+.counselorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.profileName {
-  font-size: 20px;
+.counselorName {
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.userInfo {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  width: 80%;
+.rating {
+  color: #666;
+  font-size: 14px;
 }
 
-.userInfo p {
-  margin: 8px 0;
+.star {
+  color: #ffd700; /* 금색 별표 */
 }
 
-.userInfoName {
-  font-size: 20px;
-  color: #000000;
-  font-weight: 600;
-  padding-right: 770px;
-  padding-top: 20px;
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
-.userActions button {
-  margin-right: 10px;
+.tag {
+  background-color: #e8f5e9; /* 연한 민트색 */
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 12px;
+  color: #333;
+}
+
+.actionButton,
+.reviewButton {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: none;
+  background-color: #a5a0b4; /* 회색빛 보라색 */
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.personalInfoButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.personalInfoButton {
   padding: 8px 16px;
-  background-color: #304054;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  border: 1px solid #000;
 }
 
-.userActions button:hover {
-  background-color: #506070;
+.personalInfoButton:active {
+  background-color: #383838;
 }

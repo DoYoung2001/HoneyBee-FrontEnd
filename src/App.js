@@ -1,8 +1,14 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import NavBar from "./component/Navbar/Navbar";
 import Main from "./component/Main/Main";
 import Mypage from "./component/Mypage/Mypage";
+import PersonalInfo from "./component/PersonalInfo/PersonalInfo";
 import Login from "./component/Login/Login";
 import SignUp from "./component/SignUp/SignUp";
 import Member from "./component/SignUpMember/Member";
@@ -13,21 +19,18 @@ import CounselorList from "./component/CounselorList/CounselorList";
 import CounselorDetail from "./component/CounselorDetail/CounselorDetail";
 import QuestionBoard from "./component/QuestionBoard/QuestionBoard";
 
-import MyReserve from "./component/MyReserve/MyReserve";
 import CreatePost from "./component/CreatePost/CreatePost";
-
-import ConsultCategory from "./component/ConsultCategory/ConsultCategory";
-import HospitalList from "./component/HospitalList/HospitalList";
-import ConsultReservation from "./component/ConsultReservation/ConsultReservation";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <NavBar />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/mypage" element={<Mypage />} />
+          <Route path="/personalinfo" element={<PersonalInfo />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signup/member" element={<Member />} />
@@ -39,10 +42,8 @@ function App() {
           />
           <Route path="/myreserve" element={<MyReserve />} />
           <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/postpage" element={<PostPage />} />
           <Route path="/questionboard" element={<QuestionBoard />} />
-          <Route path="/consult-category" element={<ConsultCategory />} />
-          <Route path="/hospital-list" element={<HospitalList />} />
-          <Route path="/consult-reservation" element={<ConsultReservation />} />
         </Routes>
       </div>
     </Router>
