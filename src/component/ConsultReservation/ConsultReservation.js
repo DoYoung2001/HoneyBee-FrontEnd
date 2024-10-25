@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./ConsultReservation.module.css";
 
 const ConsultReservation = () => {
-  const [selectedDate, setSelectedDate] = useState(31);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [month, setMonth] = useState(9);
   const [year, setYear] = useState(2024);
@@ -55,6 +55,7 @@ const ConsultReservation = () => {
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
+    setSelectedTime(null);
   };
 
   const handleTimeClick = (time) => {
@@ -79,11 +80,24 @@ const ConsultReservation = () => {
     }
   };
 
+  // 선택된 날짜의 포맷팅 함수
+  const formatSelectedDate = () => {
+    if (selectedDate) {
+      const date = new Date(year, month, selectedDate);
+      const options = { weekday: "short" }; // 요일 포맷 설정
+      const dayName = date.toLocaleDateString("ko-KR", options);
+      return `${month + 1}.${selectedDate}(${dayName})`; // "월.일(요일)" 형식
+    }
+    return "";
+  };
+
   return (
     <div className={styles["calendar-container"]}>
       <h1 className={styles.title}>예약하기</h1>
       <div className={styles.separator}></div>
-      <h2 className={styles.subtitle}>10.25(금) 시간을 선택해주세요</h2>
+      <h2 className={styles.subtitle}>
+        {formatSelectedDate()} 시간을 선택해주세요
+      </h2>
       <header className={styles["calendar-header"]}>
         <div className={styles["month-selector"]}>
           <button className={styles["month-arrow"]} onClick={handlePrevMonth}>
@@ -119,7 +133,9 @@ const ConsultReservation = () => {
                           ${day.isSaturday ? styles["saturday"] : ""} 
                           ${day.isPast ? styles["past-date"] : ""} 
                           ${
-                            selectedDate === day.date ? styles["selected"] : ""
+                            selectedDate === day.date && day.date !== null
+                              ? styles["selected"]
+                              : ""
                           }`}
                 onClick={() =>
                   !day.isPast && day.date && handleDateClick(day.date)
@@ -137,39 +153,39 @@ const ConsultReservation = () => {
         </div>
       </div>
 
-      <div className={styles["time-slots"]}>
-        {/* 오전 시간 슬롯 */}
-        <div className={styles["time-label"]}>오전</div>
-        <div className={styles["time-grid"]}>
-          {morningSlots.map((time, index) => (
-            <button
-              key={index}
-              className={`${styles["time-slot"]} ${
-                selectedTime === time ? styles["selected"] : ""
-              }`}
-              onClick={() => handleTimeClick(time)}
-            >
-              {time}
-            </button>
-          ))}
-        </div>
+      {selectedDate && (
+        <div className={styles["time-slots"]}>
+          <div className={styles["time-label"]}>오전</div>
+          <div className={styles["time-grid"]}>
+            {morningSlots.map((time, index) => (
+              <button
+                key={index}
+                className={`${styles["time-slot"]} ${
+                  selectedTime === time ? styles["selected"] : ""
+                }`}
+                onClick={() => handleTimeClick(time)}
+              >
+                {time}
+              </button>
+            ))}
+          </div>
 
-        {/* 오후 시간 슬롯 */}
-        <div className={styles["time-label"]}>오후</div>
-        <div className={styles["time-grid"]}>
-          {afternoonSlots.map((time, index) => (
-            <button
-              key={index}
-              className={`${styles["time-slot"]} ${
-                selectedTime === time ? styles["selected"] : ""
-              }`}
-              onClick={() => handleTimeClick(time)}
-            >
-              {time}
-            </button>
-          ))}
+          <div className={styles["time-label"]}>오후</div>
+          <div className={styles["time-grid"]}>
+            {afternoonSlots.map((time, index) => (
+              <button
+                key={index}
+                className={`${styles["time-slot"]} ${
+                  selectedTime === time ? styles["selected"] : ""
+                }`}
+                onClick={() => handleTimeClick(time)}
+              >
+                {time}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className={styles["reservation-info"]}>
         <h3>예약 시 확인해 주세요</h3>
