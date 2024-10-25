@@ -11,7 +11,6 @@
   
   .counselorHeader {
     display: flex;
-    align-items: center;
     margin-bottom: 30px;
   }
   
@@ -24,12 +23,30 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
   
-  .counselorBasicInfo h1 {
-    margin: 0 0 10px 0;
-    font-size: 28px;
-    color: #2c3e50;
+  .counselorBasicInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
   }
   
+  .nameAndReview {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .counselorBasicInfo h1 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-right: 20px;
+  }
+
+  .addressAndRating {
+    text-align: center;
+    margin-right: 70%;
+  }
+
   .address {
     font-size: 16px;
     color: #7f8c8d;
@@ -39,6 +56,7 @@
   .rating {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   
   .stars {
@@ -90,7 +108,7 @@
      margin-top:30px; 
   }
   
-  .reservationButton, .backButton {
+  .reservationButton{
      padding:12px; 
      padding-left:24px; 
      padding-right:24px; 
@@ -110,13 +128,39 @@
      background-color:#4169e1; 
      transform:translateY(-2px); 
   }
-  
-  .backButton { 
-     background-color:#ecf0f1; 
-     color:#2c3e50; 
+
+  .headerButtons {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
   }
   
-  .backButton:hover { 
-     background-color:#bdc3c7; 
-     transform:translateY(-2px); 
+  .backButton {
+    padding: 12px;
+    padding-left:24px; 
+    padding-right:24px; 
+    font-size:16px; 
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .backButton:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .reviewButton {
+    padding: 5px 10px;
+    background-color: #6495ed;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .reviewButton:hover {
+    background-color: #4169e1;
   }

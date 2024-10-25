@@ -1,9 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./CounselorDetail.module.css";
 
 const CounselorDetail = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const counselor = {
     id: 1,
@@ -28,30 +29,31 @@ const CounselorDetail = () => {
     navigate("/counselorlist");
   };
 
+  const handleReviewClick = () => {
+    navigate(`/counselorlist/counselordetail/${id}/reviews`);
+  };
+
   return (
-    <div className={styles.counselorDetail}>
+   <div className={styles.counselorDetail}>
       <div className={styles.counselorHeader}>
-        <img
-          src={counselor.image}
-          alt={counselor.name}
-          className={styles.counselorImage}
-        />
-        <div className={styles.counselorBasicInfo}>
-          <h1>{counselor.name}</h1>
-          <p className={styles.address}>{counselor.address}</p>
-          <div className={styles.rating}>
-            <span className={styles.stars}>
-              {"★".repeat(Math.floor(counselor.rating))}
-            </span>
-            <span className={styles.ratingNumber}>
-              {counselor.rating.toFixed(1)}
-            </span>
-            <span className={styles.reviewCount}>
-              (후기 {counselor.reviews}개)
-            </span>
-          </div>
-        </div>
+  <img src={counselor.image} alt={counselor.name} className={styles.counselorImage} />
+  <div className={styles.counselorBasicInfo}>
+    <div className={styles.addressAndRating}>
+      <p className={styles.address}>{counselor.address}</p>
+      <div className={styles.rating}>
+        <span className={styles.stars}>{"★".repeat(Math.floor(counselor.rating))}</span>
+        <span className={styles.ratingNumber}>{counselor.rating.toFixed(1)}</span>
+        <span className={styles.reviewCount}>(후기 {counselor.reviews}개)</span>
       </div>
+    </div>
+    <div className={styles.nameAndReview}>
+      <h1>{counselor.name}</h1>
+      <button onClick={handleReviewClick} className={styles.reviewButton}>
+        후기 보기
+      </button>
+    </div>
+  </div>
+</div>
       <div className={styles.counselorDetails}>
         <div className={styles.detailItem}>
           <h3>연락처</h3>
