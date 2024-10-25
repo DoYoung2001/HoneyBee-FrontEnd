@@ -78,7 +78,7 @@ const [postInfo, setPostInfo] = useState({
       navigate('/questionboard'); // 게시판으로 리다이렉트
     }
   }, [location.state, navigate]);
-  
+
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -153,24 +153,24 @@ const [postInfo, setPostInfo] = useState({
   };
 
   const handleDelete = (commentId, isReply = false, parentId = null) => {
-    if (window.confirm('댓글을 삭제하시겠습니까?')) {
-      if (isReply) {
-        const updatedComments = comments.map(comment => {
-          if (comment.id === parentId) {
-            return {
-              ...comment,
-              replies: comment.replies.filter(reply => reply.id !== commentId)
-            };
-          }
-          return comment;
-        });
-        setComments(updatedComments);
-      } else {
-        const updatedComments = comments.filter(comment => comment.id !== commentId);
-        setComments(updatedComments);
-      }
+  if (window.confirm('댓글을 삭제하시겠습니까?')) {
+    if (isReply) {
+      const updatedComments = comments.map(comment => {
+        if (comment.id === parentId) {
+          return {
+            ...comment,
+            replies: comment.replies.filter(reply => reply.id !== commentId)
+          };
+        }
+        return comment;
+      });
+      setComments(updatedComments);
+    } else {
+      const updatedComments = comments.filter(comment => comment.id !== commentId);
+      setComments(updatedComments);
     }
-    setActiveMenu(null);
+  }
+  setActiveMenu(null);
   };
 
   const toggleCommentMenu = (commentId) => {
@@ -275,40 +275,41 @@ const [postInfo, setPostInfo] = useState({
           />
           <button className={styles.button} type="submit">댓글 작성</button>
         </form>
-        {comments.map(comment => (
-          <div key={comment.id} className={styles.comment}>
-            <div className={styles.commentHeader}>
-              <span className={styles.authorName}>{comment.author}</span>
-              <div className={styles.commentActions} ref={menuRef}>
-                <div className={styles.menuContainer}>
-                <button className={styles.menuButton} onClick={() => toggleCommentMenu(comment.id)}>⋮</button>
-                  {activeMenu === comment.id && (
-                    <div className={styles.menuDropdown}>
-                      <button onClick={() => handleEdit(comment.id)}>수정</button>
-                      <button onClick={() => handleDelete(comment.id)}>삭제</button>
+        
+              {comments.map(comment => (
+                <div key={comment.id} className={styles.comment}>
+                  <div className={styles.commentHeader}>
+                    <span className={styles.authorName}>{comment.author}</span>
+                    <div className={styles.commentActions} ref={menuRef}>
+                      <div className={styles.menuContainer}>
+                        <button className={styles.menuButton} onClick={() => toggleCommentMenu(comment.id)}>⋮</button>
+                        {activeMenu === comment.id && (
+                          <div className={styles.menuDropdown}>
+                            <button onClick={() => handleEdit(comment.id)}>수정</button>
+                            <button onClick={() => handleDelete(comment.id)}>삭제</button>
+                          </div>
+                        )}
+                      </div>
                     </div>
+                  </div>
+                  {editingComment && editingComment.id === comment.id && !editingComment.isReply ? (
+                    <div className={styles.editContainer}>
+                      <textarea
+                        value={editText}
+                        onChange={(e) => setEditText(e.target.value)}
+                        className={styles.editInput}
+                      />
+                      <div className={styles.editButtons}>
+                        <button onClick={handleEditSubmit} className={styles.button}>저장</button>
+                        <button onClick={() => setEditingComment(null)} className={styles.button}>취소</button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <p className={styles.commentText}>{comment.text}</p>
+                      <span className={styles.timestamp}>{comment.timestamp}</span>
+                    </>
                   )}
-                </div>
-              </div>
-            </div>
-            {editingComment && editingComment.id === comment.id && !editingComment.isReply ? (
-              <div className={styles.editContainer}>
-              <textarea
-                value={editText}
-                onChange={(e) => setEditText(e.target.value)}
-                className={styles.editInput}
-              />
-              <div className={styles.editButtons}>
-                <button onClick={handleEditSubmit} className={styles.button}>저장</button>
-                <button onClick={() => setEditingComment(null)} className={styles.button}>취소</button>
-              </div>
-            </div>
-            ) : (
-              <>
-                <p className={styles.commentText}>{comment.text}</p>
-                <span className={styles.timestamp}>{comment.timestamp}</span>
-              </>
-            )}
             <div>
             <button className={styles.replyButton} onClick={() => toggleReply(comment.id)}>
               답글
@@ -337,7 +338,7 @@ const [postInfo, setPostInfo] = useState({
                     <span className={styles.authorName}>{reply.author}</span>
                     <div className={styles.replyActions}>
                       <div className={styles.menuContainer} ref={menuRef}>
-                      <button className={styles.menuButton} onClick={() => toggleCommentMenu(reply.id)}>⋮</button>
+                        <button className={styles.menuButton} onClick={() => toggleCommentMenu(reply.id)}>⋮</button>
                         {activeMenu === reply.id && (
                           <div className={styles.menuDropdown}>
                             <button onClick={() => handleEdit(reply.id, true, comment.id)}>수정</button>
