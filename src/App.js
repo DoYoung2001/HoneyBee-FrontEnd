@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -38,6 +38,13 @@ const ScrollToTop = () => {
 };
 
 function App() {
+
+  const [posts, setPosts] = useState([]);
+
+  const addPost = (newPost) => {
+    setPosts([...posts, { ...newPost, id: Date.now(), timestamp: new Date() }]);
+  };
+
   return (
     <Router>
       <div className="App">
@@ -56,9 +63,9 @@ function App() {
             path="/counselorlist/counselordetail/:id"
             element={<CounselorDetail />}
           />
-          <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/createpost" element={<CreatePost addPost={addPost} />} />
           <Route path="/postpage/:id" element={<PostPage />} />
-          <Route path="/questionboard" element={<QuestionBoard />} />
+          <Route path="/questionboard" element={<QuestionBoard posts={posts} />} />
           <Route path="/likecounselor" element={<LikeCounselor />} />
           <Route path="/consult-category" element={<ConsultCategory />} />
           <Route path="/hospital-list" element={<HospitalList />} />
