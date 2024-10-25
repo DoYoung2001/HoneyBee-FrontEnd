@@ -43,7 +43,7 @@ const CounselorDetail = () => {
   };
 
   const handleReviewClick = () => {
-    navigate(`/counselorlist/counselordetail/${id}/reviews`);
+    navigate(`/counselorlist/counselordetail/${id}/reviews`, { state: { counselor } });
   };
 
   if (!counselor) {

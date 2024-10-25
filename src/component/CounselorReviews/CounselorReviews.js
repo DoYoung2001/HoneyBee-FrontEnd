@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import styles from "./CounselorReviews.module.css";
 
 const ReviewItem = ({ review }) => {
@@ -31,11 +31,12 @@ const ReviewItem = ({ review }) => {
 const CounselorReviews = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const location = useLocation();
   const [sortBy, setSortBy] = useState("rating");
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 10;
 
-  const counselor = {
+  const counselor = location.state?.counselor ||  {
     id: 1,
     name: "김상담",
     rating: 4.5,
@@ -69,7 +70,7 @@ const CounselorReviews = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleGoBack = () => {
-    navigate(`/counselorlist/counselordetail/${id}`);
+    navigate(`/counselorlist/counselordetail/${id}`, { state: { counselor } });
   };
 
   return (
