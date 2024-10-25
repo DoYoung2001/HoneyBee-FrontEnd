@@ -198,6 +198,8 @@
   }
   
   .pageArrow:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    color: #cccccc;
+    cursor: default;
+    pointer-events: none;
   }
+  

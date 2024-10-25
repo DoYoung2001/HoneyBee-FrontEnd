@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./CounselorReviews.module.css";
 
 const ReviewItem = ({ review }) => {
@@ -30,6 +30,7 @@ const ReviewItem = ({ review }) => {
 
 const CounselorReviews = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [sortBy, setSortBy] = useState("rating");
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 10;
@@ -68,7 +69,7 @@ const CounselorReviews = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleGoBack = () => {
-    navigate("/counselordetail");
+    navigate(`/counselorlist/counselordetail/${id}`);
   };
 
   return (

@@ -64,7 +64,10 @@ function App() {
             path="/counselorlist/counselordetail/:id"
             element={<CounselorDetail />}
           />
-          <Route path="/counselorreviews" element={<CounselorReviews />} />
+          <Route
+            path="/counselorlist/counselordetail/:id/reviews"
+            element={<CounselorReviews />}
+          />
           <Route path="/createpost" element={<CreatePost addPost={addPost} />} />
           <Route path="/postpage/:id" element={<PostPage />} />
           <Route path="/questionboard" element={<QuestionBoard posts={posts} />} />
