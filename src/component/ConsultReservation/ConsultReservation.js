@@ -7,7 +7,8 @@ const ConsultReservation = () => {
   const [month, setMonth] = useState(9);
   const [year, setYear] = useState(2024);
 
-  const timeSlots = ["10:00", "10:30", "11:00", "11:30", "13:00"];
+  const morningSlots = ["09:00", "09:30", "10:00", "10:30", "11:00"];
+  const afternoonSlots = ["13:00", "13:30", "14:00", "14:30", "15:00"];
 
   const generateCalendarData = () => {
     const days = [];
@@ -82,6 +83,7 @@ const ConsultReservation = () => {
     <div className={styles["calendar-container"]}>
       <h1 className={styles.title}>예약하기</h1>
       <div className={styles.separator}></div>
+      <h2 className={styles.subtitle}>10.25(금) 시간을 선택해주세요</h2>
       <header className={styles["calendar-header"]}>
         <div className={styles["month-selector"]}>
           <button className={styles["month-arrow"]} onClick={handlePrevMonth}>
@@ -135,11 +137,27 @@ const ConsultReservation = () => {
         </div>
       </div>
 
-      <div className={styles["reservation-text"]}>시간을 선택해 주세요</div>
       <div className={styles["time-slots"]}>
+        {/* 오전 시간 슬롯 */}
+        <div className={styles["time-label"]}>오전</div>
+        <div className={styles["time-grid"]}>
+          {morningSlots.map((time, index) => (
+            <button
+              key={index}
+              className={`${styles["time-slot"]} ${
+                selectedTime === time ? styles["selected"] : ""
+              }`}
+              onClick={() => handleTimeClick(time)}
+            >
+              {time}
+            </button>
+          ))}
+        </div>
+
+        {/* 오후 시간 슬롯 */}
         <div className={styles["time-label"]}>오후</div>
         <div className={styles["time-grid"]}>
-          {timeSlots.map((time, index) => (
+          {afternoonSlots.map((time, index) => (
             <button
               key={index}
               className={`${styles["time-slot"]} ${
@@ -157,21 +175,20 @@ const ConsultReservation = () => {
         <h3>예약 시 확인해 주세요</h3>
         <div className={styles["info-content"]}>
           <ul>
-            <li>네이버 페이로 시간 예약 후 결제 시에만 생성됩니다.</li>
-            <li>예약 프로모션 상품은 선착제 입니다.</li>
+            <li>상담 예약 후 결제 시에만 예약이 생성됩니다.</li>
             <li>
-              천재지변에 대한 변경, 추가 금액 발생 시 기타 할인 혜택 중복 적용
-              및 바우처 사용 불가합니다.
+              예약 후 취소는 상담 전일까지 가능하며, 상담 당일에는 취소가
+              불가합니다.
             </li>
-            <li>
-              네이버 페이로 예약 시, 와우트 멤버 등 멤버십 포인트 적립 및 기타
-              중복 할인 적용이 불가합니다.
-            </li>
-            <li>최대 4인까지 예약 가능합니다.</li>
+            <li>예약은 신용카드 또는 무통장 입금으로만 가능합니다.</li>
+            {/* <li>
+            상담 시간은 예약 완료 후 변경할 수 없습니다. 신중한 예약 부탁드립니다.
+            </li> */}
+            <li>상담 당일에는 최소 10분 전에 로그인하여 대기해 주세요.</li>
           </ul>
         </div>
         <div className={styles["reservation-number"]}>
-          예약문의: 02 2016 1235
+          예약문의: 02 2024 1234
         </div>
       </div>
     </div>
