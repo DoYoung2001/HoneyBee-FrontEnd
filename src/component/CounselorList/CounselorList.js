@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './CounselorList.module.css';
 
-const categories = ['불안', '우울', '가족관계', '연애', '사회생활', '직장', '학업', '자존감', '중독', '트라우마'];
+
 
 const counselors = [
     { id: 1, name: '김상담', rating: 4.5, reviews: 25, address: '서울시 강남구' , image: 'https://cdn-icons-png.flaticon.com/128/4439/4439988.png' },
@@ -19,24 +19,16 @@ const counselors = [
   ];
 
 const CounselorList = () => {
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [sortBy, setSortBy] = useState('rating');
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
   const counselorsPerPage = 10;
   const navigate = useNavigate();
 
-  const handleCategoryChange = (direction) => {
-    if (direction === 'left') {
-      setSelectedCategoryIndex((prevIndex) => 
-        prevIndex > 0 ? prevIndex - 1 : categories.length - 1
-      );
-    } else if (direction === 'right') {
-      setSelectedCategoryIndex((prevIndex) => 
-        prevIndex < categories.length - 1 ? prevIndex + 1 : 0
-      );
-    } else {
-      setSelectedCategoryIndex(direction); 
-    }
+  
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    setCurrentPage(1); 
   };
 
   const handleCounselorClick = (counselor) => {
@@ -47,24 +39,29 @@ const CounselorList = () => {
     setSortBy(event.target.value);
   };
 
-  // 정렬된 상담사 목록 가져오기
-  const getSortedCounselors = () => {
-    return [...counselors].sort((a, b) => {
-      if (sortBy === 'rating') {
-        return b.rating - a.rating;
-      } else {
-        return a.name.localeCompare(b.name);
-      }
-    });
+  // 정렬 및 검색된 상담사 목록 가져오기
+  const getSortedAndFilteredCounselors = () => {
+    return counselors
+      .filter(counselor => 
+        counselor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        counselor.address.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .sort((a, b) => {
+        if (sortBy === 'rating') {
+          return b.rating - a.rating;
+        } else {
+          return a.name.localeCompare(b.name);
+        }
+      });
   };
 
   // 현재 페이지의 상담사 목록 가져오기
   const getCurrentCounselors = () => {
-    const sortedCounselors = getSortedCounselors();
+    const sortedAndFilteredCounselors = getSortedAndFilteredCounselors();
     const indexOfLastCounselor = currentPage * counselorsPerPage;
     const indexOfFirstCounselor = indexOfLastCounselor - counselorsPerPage;
-    return sortedCounselors.slice(indexOfFirstCounselor, indexOfLastCounselor);
-    };
+    return sortedAndFilteredCounselors.slice(indexOfFirstCounselor, indexOfLastCounselor);
+  };
 
   // 페이지 변경 핸들러
   const paginate = (pageNumber) => {
@@ -75,26 +72,21 @@ const CounselorList = () => {
 
   // 총 페이지 수 계산
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(counselors.length / counselorsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(getSortedAndFilteredCounselors().length / counselorsPerPage); i++) {
     pageNumbers.push(i);
   }
 
   return (
     <div className={styles.container}>
-      <div className={styles.categoryNavContainer}>
-        <button className={styles.navButton} onClick={() => handleCategoryChange('left')}>&lt;</button>
-        <div className={styles.categoryNav}>
-          {categories.map((category, index) => (
-            <button
-              key={category}
-              className={`${styles.categoryButton} ${index === selectedCategoryIndex ? styles.active : ''}`}
-              onClick={() => handleCategoryChange(index)}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-        <button className={styles.navButton} onClick={() => handleCategoryChange('right')}>&gt;</button>
+      <h1 className={styles.title}>상담사 목록</h1>
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="상담사 이름 또는 지역 검색"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className={styles.searchInput}
+        />
       </div>
 
       <div className={styles.sortContainer}>
