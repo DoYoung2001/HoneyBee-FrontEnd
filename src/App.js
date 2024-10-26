@@ -26,6 +26,7 @@ import ConsultCategory from "./component/ConsultCategory/ConsultCategory";
 import HospitalList from "./component/HospitalList/HospitalList";
 import ConsultReservation from "./component/ConsultReservation/ConsultReservation";
 import CounselorReviews from "./component/CounselorReviews/CounselorReviews";
+import HospitalDetail from "./component/HospitalDetail/HospitalDetail";
 
 // 스크롤 위치를 조정하는 컴포넌트
 const ScrollToTop = () => {
@@ -35,7 +36,7 @@ const ScrollToTop = () => {
     window.scrollTo(0, 0); // 페이지가 변경될 때 스크롤을 맨 위로 이동
   }, [pathname]);
 
-  return null; // 이 컴포넌트는 아무것도 렌더링하지 않음
+  return null;
 };
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
           <Route path="/likecounselor" element={<LikeCounselor />} />
           <Route path="/consult-category" element={<ConsultCategory />} />
           <Route path="/hospital-list" element={<HospitalList />} />
+          <Route path="/hospital-list/:id" element={<HospitalDetail />} />
           <Route path="/consult-reservation" element={<ConsultReservation />} />
         </Routes>
       </div>
