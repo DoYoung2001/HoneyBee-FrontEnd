@@ -57,7 +57,7 @@
   }
   
   .signUpButton {
-    width: 100%;
+    width: calc(100% - 24px); 
     padding: 14px;
     margin-top: 5%;
     background-color: #A3D3AA;
@@ -80,13 +80,12 @@
   }
   
   .addressSearchButton {
-    padding: 5px 13px;
+    padding: 5px 10px;
     background-color: #f0f0f0;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    white-space: nowrap;  /* 글씨 가로고정 */ 
-    margin-right: 10%;
+    white-space: nowrap;  /* 글씨 가로고정 */
   }
   
   .addressSearchButton:hover {
