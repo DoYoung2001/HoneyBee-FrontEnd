@@ -1,0 +1,38 @@
+.hospitalDetail {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .loading, .error, .notFound {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 18px;
+  }
+  
+  .info {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .services ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .services li {
+    margin-bottom: 10px;
+  }
+  
+  .doctor {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  .doctor h3 {
+    margin-top: 0;
+  }

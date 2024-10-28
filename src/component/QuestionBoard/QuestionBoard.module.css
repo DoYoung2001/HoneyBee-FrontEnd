@@ -31,6 +31,24 @@
     background-color: #45a049;
   }
   
+  .searchContainer {
+    margin-bottom: 50px;
+  }
+  
+  .searchInput {
+    width: 98%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+  }
+  
+  .searchInput:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
   .questionsContainer {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -39,13 +57,10 @@
   }
   
   .questionItem {
-    background-color: #ffffff; 
+    display: flex;
+    flex-direction: column;
     padding: 15px;
-    margin-right: 2%;
-    display: flex; 
-    align-items: center;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #e0e0e0;
     cursor: pointer;
   }
   
@@ -57,34 +72,37 @@
     background-color: #f9f9f9;
   }
   
+  .questionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
   .questionContent {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    
+    text-align: end;
   }
   
   .questionTitle {
-    font-size: 18px; 
-    font-weight: bold; 
-    margin-bottom: 5px; 
-    color: #000;
-    text-align: left;
-
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
   }
   
   .questionText {
-    font-size: 14px; 
-    color: #666; 
+    color: #666;
+    margin-top: 5px;
   }
   
   .questionMeta {
-    display: flex; 
-    align-items: center; 
-    font-size: 14px; 
-    color: #888; 
-    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 10px;
   }
   
   .author {
@@ -92,14 +110,11 @@
   }
   
   .category {
-    flex: 0 0 auto; 
-    padding: 3px 10px; 
-    background-color: #f0f0f0; 
-    border-radius: 15px; 
-    font-size: 12px; 
-    color: #333; 
-    margin-right: 5%;
-    margin-left: 2%;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    white-space: nowrap;
   }
   
   .pagination {

@@ -1,62 +1,41 @@
 
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
   }
   
-  .categoryNavContainer {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 30px;
     margin-bottom: 20px;
-  }
-  
-  .categoryNav {
-    display: flex;
-    justify-content: space-between;
-    flex-grow: 1;
-    overflow-x: auto;
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
+    text-align: left;
   }
 
-  .categoryNav::-webkit-scrollbar { 
-    width: 0;
-    height: 0;
+  .searchContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
   }
   
-  .navButton {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 0 10px;
-  }
-  
-  .categoryButton {
-    flex: 1;
-    padding: 10px 5px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 14px;
-    white-space: nowrap;
-    text-align: center;
-  }
-  
-  .categoryButton.active {
-    color: #4169e1;
-    font-weight: bold;
+  .searchInput {
+    width: 95%;
+    padding: 10px;
+    margin-left: 1%;
     font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
   }
   
   .sortContainer {
     text-align: right;
     margin-bottom: 20px;
   }
-  
+
   .sortSelect {
     padding: 5px 10px;
     border: none;

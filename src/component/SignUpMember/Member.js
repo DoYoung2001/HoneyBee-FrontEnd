@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import DaumPostcode from 'react-daum-postcode';
 import styles from './Member.module.css';
 
 const Member = () => {
@@ -8,6 +9,7 @@ const Member = () => {
     name: '',
     email: '',
     address: '',
+    detailAddress: '',
     password: '',
     confirmPassword: ''
   });
@@ -18,6 +20,34 @@ const Member = () => {
       ...prevState,
       [name]: value
     }));
+  };
+
+  const [isAddressModalVisible, setIsAddressModalVisible] = useState(false);
+
+  const handleAddressSearch = () => {
+    setIsAddressModalVisible(true);
+  };
+
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+      }
+      fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+    }
+
+    setFormData(prevState => ({
+      ...prevState,
+      address: fullAddress,
+      detailAddress: ''
+    }));
+    setIsAddressModalVisible(false);
   };
 
   const handleSubmit = (e) => {
@@ -60,14 +90,27 @@ const Member = () => {
           </div>
           <div className={styles.inputGroup}>
             <label htmlFor="address">주소</label>
+            <div className={styles.addressInputGroup}>
+              <input 
+                type="text" 
+                id="address" 
+                name="address"
+                value={formData.address}
+                readOnly
+                placeholder="주소를 검색해주세요" 
+                required 
+              />
+              <button type="button" onClick={handleAddressSearch} className={styles.addressSearchButton}>
+                주소 검색
+              </button>
+            </div>
             <input 
               type="text" 
-              id="address" 
-              name="address"
-              value={formData.address}
+              id="detailAddress" 
+              name="detailAddress"
+              value={formData.detailAddress}
               onChange={handleChange}
-              placeholder="주소를 입력해주세요" 
-              required 
+              placeholder="나머지 주소를 입력해주세요" 
             />
           </div>
           <div className={styles.inputGroup}>
@@ -97,6 +140,21 @@ const Member = () => {
           <button type="submit" className={styles.signUpButton}>가입하기</button>
         </form>
       </main>
+      {isAddressModalVisible && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <DaumPostcode
+              onComplete={handleComplete}
+              autoClose={false}
+              width={500}
+              height={600}
+            />
+            <button onClick={() => setIsAddressModalVisible(false)} className={styles.closeButton}>
+              닫기
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

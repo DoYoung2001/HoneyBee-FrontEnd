@@ -9,11 +9,20 @@ const CreatePost = () => {
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const navigate = useNavigate();
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('게시글 등록:', { title, content, category });
-    navigate('/questionboard');
+    const newPost = {
+      id: Date.now(),
+      title,
+      content,
+      category,
+      author: "연냥", // 실제 사용자 정보로 대체해야 함
+      date: new Date()
+    };
+    console.log('게시글 등록:', newPost);
+    navigate('/questionboard', { state: { newPost } });
   };
 
   const handleCancel = () => {
